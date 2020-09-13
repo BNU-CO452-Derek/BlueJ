@@ -6,9 +6,6 @@
  */
 public enum Coin
 {
-    ONE_P (1),
-    TWO_P (2),
-    FIVE_P (5),
     TEN_P (10),
     TWENTY_P (20),
     FIFTY_P (50),

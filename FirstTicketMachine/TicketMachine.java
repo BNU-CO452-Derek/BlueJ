@@ -14,12 +14,15 @@ import java.util.Scanner;
  */
 public class TicketMachine
 {
-    // The maximum cost of a ticket in pence
-    public static final int MAX_PRICE = 500;
+    // The currently selected ticket
+    private Ticket currentTicket;
+    
     // The price of a ticket from this machine in pence.
     private int price;
+    
     // The amount of money entered by a customer so far in pence.
     private int balance;
+    
     // The total amount of money collected by this machine in pence.
     private int total;
 
@@ -33,25 +36,32 @@ public class TicketMachine
         balance = 0;
         total = 0;
 
-        price = MAX_PRICE;
+        price = 0;
+        currentTicket = null;
+        
         setupPrices();
     }
 
-    /**
-     * Create a machine that issues tickets of the given cost in pence.
-     */
-    public TicketMachine(int ticketCost)
-    {
-        this();
-        price = ticketCost;
-    }
 
+    public void selectAylesburyTicket()
+    {
+       currentTicket = new Ticket("Aylesbury", 200); 
+    }
+    
     /**
      * @Return The price of a ticket in pence.
      */
     public int getPrice()
     {
-        return price;
+        if(currentTicket != null)
+        {
+            return currentTicket.getPrice();
+        }
+        else
+        {
+            System.out.println("You have not chosen a destination!");
+            return 0;
+        }
     }
 
     /**
@@ -63,6 +73,7 @@ public class TicketMachine
         return balance;
     }
 
+    
     public void insertCoin(Coin coin)
     {
         balance = balance + coin.getPenceValue();
@@ -141,8 +152,7 @@ public class TicketMachine
         {
             Ticket ticket = ticketPrices[period];
             System.out.print(startTime + " to ");
-            System.out.println(ticket.getMaxTime() + " hrs " + ticket.getCost() + " pence");
-            startTime = ticket.getMaxTime();
+            System.out.println(ticket.getDestination() + "  cost " + ticket.getPrice() + " pence");
         }
         
         System.out.println();
@@ -210,8 +220,8 @@ public class TicketMachine
     {
         ticketPrices = new Ticket[3];
 
-        ticketPrices[0] = new Ticket(150, 1);
-        ticketPrices[1] = new Ticket(250, 2);
-        ticketPrices[2] = new Ticket(500, 4);
+        ticketPrices[0] = new Ticket("Aylesbury", 1);
+        ticketPrices[1] = new Ticket("Amersham", 2);
+        ticketPrices[2] = new Ticket("High Wycombe", 4);
     }
 }

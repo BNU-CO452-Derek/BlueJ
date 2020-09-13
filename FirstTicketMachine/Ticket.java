@@ -6,37 +6,35 @@
  */
 public class Ticket
 {
-    // The extra time in minutes on top of the allowed time
-    public static final int EXTRA_TIME = 10;
-    // Cost of ticket in pence
-    private int cost;
+    // Price of ticket in pence
+    private int price;
     // Maximum time allowed in hours
-    private int maxTime;
+    private String destination;
 
     /**
      * Constructor for objects of class Ticket
      */
-    public Ticket(int cost, int time)
+    public Ticket( String destination, int price)
     {
         // initialise instance variables
-        this.cost = cost;
-        this.maxTime = time;
+        this.price = price;
+        this.destination = destination;
     }
 
     /**
-     * Return the cost of the ticket in pence
+     * Return the price of the ticket in pence
      */
-    public int getCost()
+    public int getPrice()
     {
-        return cost;
+        return price;
     }
     
     /**
-     * Return the maximum time allowed in hours
+     * Return the name of the destination
      */
-    public int getMaxTime()
+    public String getDestination()
     {
-        return maxTime;
+        return destination;
     }
     
 }
