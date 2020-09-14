@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.util.Date;
+
 /**
  * Write a description of class Ticket here.
  * 
@@ -10,7 +13,10 @@ public class Ticket
     private int price;
     // Maximum time allowed in hours
     private String destination;
-
+    
+    private LocalDateTime date = LocalDateTime.now();
+    private Date today = new Date();
+    
     /**
      * Constructor for objects of class Ticket
      */
@@ -35,6 +41,11 @@ public class Ticket
     public String getDestination()
     {
         return destination;
+    }
+    
+    public Date getDate()
+    {
+        return today;
     }
     
 }

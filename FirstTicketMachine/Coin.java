@@ -6,11 +6,10 @@
  */
 public enum Coin
 {
-    TEN_P (10),
-    TWENTY_P (20),
-    FIFTY_P (50),
-    ONE_POUND (100),
-    TWO_POUND (200);
+    P10 (10),
+    P20 (20),
+    P100 (100),
+    P200 (200);
     
     private final int value;
     

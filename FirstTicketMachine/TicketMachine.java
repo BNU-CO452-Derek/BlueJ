@@ -1,5 +1,7 @@
 import java.io.*;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
+
 /**
  * TicketMachine models a ticket machine that issues
  * flat-fare tickets.
@@ -14,19 +16,20 @@ import java.util.Scanner;
  */
 public class TicketMachine
 {
+    public static final Ticket AYLESBURY_TICKET = new Ticket("Aylesbury", 200);
+    public static final Ticket AMERSHAM_TICKET = new Ticket("Amersham", 300);
+    public static final Ticket WYCOMBE_TICKET = new Ticket("High Wycombe", 330);
+    
     // The currently selected ticket
     private Ticket currentTicket;
-    
-    // The price of a ticket from this machine in pence.
-    private int price;
     
     // The amount of money entered by a customer so far in pence.
     private int balance;
     
-    // The total amount of money collected by this machine in pence.
-    private int total;
-
-    private Ticket ticketPrices [];
+    // The totalCollected amount of money collected by this machine in pence.
+    private int totalCollected;
+    
+    private SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy");
 
     /**
      * Create a machine that issues tickets for the maximum price
@@ -34,18 +37,40 @@ public class TicketMachine
     public TicketMachine()
     {
         balance = 0;
-        total = 0;
+        totalCollected = 0;
 
-        price = 0;
         currentTicket = null;
-        
-        setupPrices();
     }
 
 
+    public void PrintDestinations()
+    {
+        printHeading();
+        System.out.println();
+
+        System.out.print(" Tickets to " + AYLESBURY_TICKET.getDestination());
+        System.out.println(" cost " + AYLESBURY_TICKET.getPrice());
+        
+        System.out.print(" Tickets to " + AMERSHAM_TICKET.getDestination());
+        System.out.println(" cost " + AMERSHAM_TICKET.getPrice());  
+        
+        System.out.print(" Tickets to " + WYCOMBE_TICKET.getDestination());
+        System.out.println(" cost " + WYCOMBE_TICKET.getPrice());        
+    }
+    
     public void selectAylesburyTicket()
     {
-       currentTicket = new Ticket("Aylesbury", 200); 
+       currentTicket = AYLESBURY_TICKET; 
+    }
+    
+    public void selectAmershamTicket()
+    {
+       currentTicket = AMERSHAM_TICKET; 
+    }
+    
+    public void selectWycombeTicket()
+    {
+       currentTicket = WYCOMBE_TICKET; 
     }
     
     /**
@@ -76,23 +101,20 @@ public class TicketMachine
     
     public void insertCoin(Coin coin)
     {
-        balance = balance + coin.getPenceValue();
-        printReceived(coin.getPenceValue());
+        updateBalance(coin.getPenceValue());
     }
 
     /**
      * Simulate the insertion of a uk coin.  Coins accepted are
-     * 1, 2, 5, 10, 20, 50, 100 and 200p coins
+     * 10, 20, 100 and 200p coins
      */
     public void insertCoin(int coin)
     {
         switch(coin)
         {
-            case 1:  case 2:  case 5:   case 10:
-            case 20: case 50: case 100: case 200: 
+            case 10:  case 20: case 100: case 200: 
             
-                balance = balance + coin;
-                printReceived(coin);
+                updateBalance(coin);
                 break;
 
             default: 
@@ -101,21 +123,37 @@ public class TicketMachine
         }
     }
 
+    
     /**
-     * Receive an amount of money in pence from a customer.
-     * Check that the amount is sensible.
+     * Insert a ten pence coin
      */
-    public void insertMoney(int amount)
+    public void insert10Pence()
     {
-        if(amount > 0) 
-        {
-            balance = balance + amount;
-        }
-        else 
-        {
-            System.out.println();
-            System.out.println("Use a positive amount: " + amount);
-        }
+            updateBalance(10);            
+    }
+    
+    /**
+     * Insert a twenty pence coin
+     */
+    public void insert20Pence()
+    {
+            updateBalance(20);            
+    }
+    
+    /**
+     * Insert a one pound coin
+     */
+    public void insert1Pound()
+    {
+            updateBalance(100);            
+    }
+
+    /**
+     * Insert a two pound coin
+     */
+    public void insert2Pound()
+    {
+        updateBalance(200);
     }
 
     /**
@@ -133,8 +171,7 @@ public class TicketMachine
 
         if(amount > 0) 
         {
-            balance = balance + amount;
-            printReceived(amount);
+            updateBalance(amount);
         }
         else 
         {
@@ -143,39 +180,30 @@ public class TicketMachine
         }
     }
 
-    public void printPrices()
+    private void printHeading()
     {
-        printHeadings();
-        int startTime = 0;
-        
-        for(int period = 0; period < 3; period++)
-        {
-            Ticket ticket = ticketPrices[period];
-            System.out.print(startTime + " to ");
-            System.out.println(ticket.getDestination() + "  cost " + ticket.getPrice() + " pence");
-        }
-        
+        System.out.println();
+        System.out.println(" ##############################");
+        System.out.println(" #      Peacock Trains");
+        System.out.println(" # Train Tickets - PAY HERE");
+        System.out.println(" ##############################");
         System.out.println();
     }
 
-    private void printHeadings()
+    private void updateBalance(int amount)
     {
-        System.out.println();
-        System.out.println("##############################");
-        System.out.println("# Peacock Park & Ride");
-        System.out.println("# Parking Tickets - PAY HERE");
-        System.out.println("##############################");
-        System.out.println();
-    }
-
-    private void printReceived(int amount)
-    {
-        printHeadings();
+        balance = balance + amount;
+        
         System.out.println();
         System.out.println("Received " + amount + " pence");
-        System.out.println("Total Received " + balance + " pence");
+        printBalance();
     }
 
+    public void printBalance()
+    {
+        System.out.println("Balance " + balance + " pence");
+    }
+    
     /**
      * Print a ticket if enough money has been inserted, and
      * reduce the current balance by the ticket price. Print
@@ -183,16 +211,24 @@ public class TicketMachine
      */
     public void printTicket()
     {
+        int price = currentTicket.getPrice();
+        double pounds;
+        
+        String date = formatter.format(currentTicket.getDate());
+        String destination = currentTicket.getDestination();
+        
         if(balance >= price) 
         {
-            printHeadings();
-            // Simulate the printing of a ticket.
-            System.out.print("Your Parking Ticket cost ");
-            System.out.println(price + " pence.");
+            printHeading();
+
+            System.out.print("Your Train Ticket to ");
+            System.out.println(destination );
+            System.out.println("On Date: " + date);
+            System.out.println("Cost: " + price + " pence");
             System.out.println();
 
-            // Update the total collected with the price.
-            total = total + price;
+            // Update the totalCollected collected with the price.
+            totalCollected = totalCollected + price;
             // Reduce the balance by the prince.
             balance = balance - price;
         }
@@ -214,14 +250,5 @@ public class TicketMachine
         amountToRefund = balance;
         balance = 0;
         return amountToRefund;
-    }
-
-    private void setupPrices()
-    {
-        ticketPrices = new Ticket[3];
-
-        ticketPrices[0] = new Ticket("Aylesbury", 1);
-        ticketPrices[1] = new Ticket("Amersham", 2);
-        ticketPrices[2] = new Ticket("High Wycombe", 4);
     }
 }
