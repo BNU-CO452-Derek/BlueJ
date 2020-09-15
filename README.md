@@ -16,9 +16,10 @@ These versions are model answers to the independant study questions.  The projec
 Take a copy of the better-ticket-machine as a starting point and make it more realistic by offering tickets to three local stations
 1. Aylesbury costing £2.20
 2. Amersham costing £3.00
-3. High Wycombe costing £3.30
-Each ticket should have a destination, a cost and a date.  Add methods to the TicketMachine so that a user can insert 10p, 20, £1.00 and £2.00 coins.  After each coin is inserted the machine should display the amount entered and the current balance.
-
+3. High Wycombe costing £3.30</br>
+Each ticket should have a destination, a cost and a date.  
+Add methods to the TicketMachine so that a user can insert 10p, 20, £1.00 and £2.00 coins.  
+After each coin is inserted the machine should display the amount entered and the current balance.
 ## App03 24HourClock
 ## App04
 ## Appo5
