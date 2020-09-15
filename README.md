@@ -18,9 +18,11 @@ Take a copy of the better-ticket-machine as a starting point and make it more re
 2. Amersham costing £3.00
 3. High Wycombe costing £3.30</br>
 
-Each ticket should have a destination, a cost and a date.  
+Each ticket should have a destination, a cost and the date purchased.  
 Add methods to the TicketMachine so that a user can insert 10p, 20, £1.00 and £2.00 coins.  
 After each coin is inserted the machine should display the amount entered and the current balance.
+### Testing
+Create a TicketMachine and use it to purchase all three tickets.  Make sure that your tests include trying to purchase a ticket with too little money inserted, and also with too much money inserted.  Show that excess money can be refunded.  Use the terminal window to record your tests.
 ## App03 24HourClock
 ## App04
 ## Appo5
