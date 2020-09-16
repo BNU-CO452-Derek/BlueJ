@@ -30,8 +30,8 @@ Whenever you have values in a program that are not going to be changed, it is be
   public static final Ticket AYLESBURY_TICKET = new Ticket("Aylesbury", 200);
 ~~~
 This concept is not introduced until Chapter 5 in BlueJ, and you can use a variable instead.  In the next Chapter 3 they use literals, 60 and 24.  Although in this case they may be instantly recognised, constants like MINUTES_IN_HOUR and HOURS_IN_DAY make the program clearer and easier to read.
-### Dates
-There is a Date data type in Java in the java.util package which can be used as shown below, but for simplicity you can simply use a String e.g. "15/Sep/2020"
+#### Dates
+There is a Date data type in Java in the java.util package which can be used as shown below, but for simplicity you can simply use a String e.g. "15/Sep/2020" as this concepts is not covered in BlueJ.
 ~~~
     import java.util.Date;
     ...
@@ -46,6 +46,29 @@ In order to print out a date in the correct local date form you will need a Simp
     ...
     String date = formatter.format(currentTicket.getDate());
 ~~~
+#### Enumerations
+Whenever you have a piece of data that only has a limited range of values, an enumeration is the best way to go.  So for example you could define Coin as where P10 has a value of 10
+~~~
+    public enum Coin
+    {
+        P10 (10),
+        P20 (20),
+        P100 (100),
+        P200 (200);
+
+        private final int value;
+
+        private Coin(int value)
+        {
+            this.value = value;
+        }
+
+        public int getValue()
+        {
+            return value;
+        }
+     }
+~~~~
 ## App03 24HourClock
 ## App04
 ## Appo5
