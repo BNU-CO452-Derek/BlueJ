@@ -24,7 +24,7 @@ After each coin is inserted the machine should display the amount entered and th
 ### Testing
 Create a TicketMachine and use it to purchase all three tickets.  Make sure that your tests include trying to purchase a ticket with too little money inserted, and also with too much money inserted.  Show that excess money can be refunded.  Use the terminal window to record your tests.
 ### Useful Java Concepts
-YOU CAN GET A FIRST CLASS MARK (80%) FOR FUNCTIONALITY WITHOUT USING THE CONCEPTS BELOW.  Hoever the following concepts are a better wau of implementing some of the TicketMachine's functionality, and if used will gain you a further 20%.
+YOU CAN GET A FIRST CLASS MARK (80%) FOR FUNCTIONALITY WITHOUT USING THE CONCEPTS BELOW IN App02.  However the following concepts are a better way of implementing some of the TicketMachine's functionality, and if used will gain you a further 20%.
 #### Constants
 Whenever you have values in a program that are not going to be changed, it is better if they are defined as constants, in Java that can be done by defining them as **static final**
 ~~~
