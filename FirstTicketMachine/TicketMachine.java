@@ -18,7 +18,7 @@ public class TicketMachine
 {
     public static final Ticket AYLESBURY_TICKET = new Ticket("Aylesbury", 200);
     public static final Ticket AMERSHAM_TICKET = new Ticket("Amersham", 300);
-    public static final Ticket WYCOMBE_TICKET = new Ticket("High Wycombe", 330);
+    public static final Ticket WYCOMBE_TICKET  = new Ticket("High Wycombe", 330);
     
     // The currently selected ticket
     private Ticket currentTicket;
@@ -98,28 +98,32 @@ public class TicketMachine
         return balance;
     }
 
-    
+    /**
+     * Coin contains an enumeration containing only those
+     * coin values that are accepted.
+     */
     public void insertCoin(Coin coin)
     {
-        updateBalance(coin.getPenceValue());
+        updateBalance(coin.getValue());
     }
 
     /**
-     * Simulate the insertion of a uk coin.  Coins accepted are
-     * 10, 20, 100 and 200p coins
+     * This method accepts a simple interger.  
+     * However only coins of set values are
+     * accepted, they are 10, 20, 100 and 200 (pence).
      */
-    public void insertCoin(int coin)
+    public void insertCoin(int value)
     {
-        switch(coin)
+        switch(value)
         {
             case 10:  case 20: case 100: case 200: 
             
-                updateBalance(coin);
+                updateBalance(value);
                 break;
 
             default: 
                 System.out.println();
-                System.out.println("This " + coin + " is not an acceptable coin!");
+                System.out.println("This " + value + " is not an acceptable coin!");
         }
     }
 

@@ -18,13 +18,8 @@ public enum Coin
         this.value = value;
     }
     
-    public int getPenceValue()
+    public int getValue()
     {
         return value;
     }
-    
-    public double getPoundValue()
-    {
-        return (double) value/100.0;
-    }
-}
+ }
