@@ -27,7 +27,7 @@ Create a TicketMachine and use it to purchase all three tickets.  Make sure that
 YOU CAN GET A FIRST CLASS MARK (80%) FOR FUNCTIONALITY WITHOUT USING THE CONCEPTS BELOW IN App02.  However the following concepts are a better way of implementing some of the TicketMachine's functionality, and if used will gain you a further 20%.
 #### Constants
 Whenever you have values in a program that are not going to be changed, it is better if they are defined as constants, in Java that can be done by defining them as **static final**
-~~~
+~~~java
   public static final Ticket AYLESBURY_TICKET = new Ticket("Aylesbury", 200);
 ~~~
 This concept is not introduced until Chapter 5 in BlueJ, and you can use a variable instead.  In the next Chapter 3 they use literals, 60 and 24.  Although in this case they may be instantly recognised, constants like MINUTES_IN_HOUR and HOURS_IN_DAY make the program clearer and easier to read.
