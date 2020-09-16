@@ -48,7 +48,7 @@ In order to print out a date in the correct local date form you will need a Simp
     String date = formatter.format(currentTicket.getDate());
 ~~~
 #### Enumerations
-Whenever you have a piece of data that only has a limited range of values, an enumeration is the best way to go.  So for example you could define Coin as where P10 has a value of 10
+Whenever you have a piece of data that only has a limited range of values, an enumeration is the best way to go.  So for example you could define Coin as where P10 has a value of 10, and P20 a value of 20.  Without the values in parenthases the values are numbered 0,1,2,3 etc.
 ~~~java
     public enum Coin
     {
