@@ -60,7 +60,7 @@ public class Student
         credits += additionalPoints;
     }
 
-    public void addCourse(Course course)
+    public void enrolOnCourse(Course course)
     {
         this.course = course;
     }
