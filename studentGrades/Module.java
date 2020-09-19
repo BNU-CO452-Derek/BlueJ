@@ -61,7 +61,7 @@ public class Module
     
     public void print()
     {
-        System.out.print("Module " + code);
+        System.out.print("\tModule " + code);
         System.out.print(" " + title);
            
         if(isComplete())

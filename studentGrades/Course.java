@@ -48,10 +48,10 @@ public class Course
         
         switch(number)
         {
-            case 1: module1 = module; 
-            case 2: module2 = module;
-            case 3: module3 = module;
-            case 4: module4 = module;
+            case 1: module1 = module; break;
+            case 2: module2 = module; break;
+            case 3: module3 = module; break;
+            case 4: module4 = module; break;
         }
     }
     
@@ -62,17 +62,20 @@ public class Course
     {
         // put your code here
         System.out.println("Course " + codeNo + " - " + title);
+        System.out.println();
+        
+        printModules();
     }
     
     /**
      * Print out all the module that exist in this course
      */
-    public void printModules()
+    private void printModules()
     {
-        module1.print();
-        module2.print();
-        module3.print();
-        module4.print();
+        if(module1 != null) module1.print();
+        if(module2 != null) module2.print();
+        if(module3 != null) module3.print();
+        if(module4 != null) module4.print();
     }
     
    public void printGrade()
