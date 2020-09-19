@@ -1,0 +1,26 @@
+Student derek = new Student("Derek", "007");
+Course web = new Course("G400", "Computing & Web");
+derek.addCourse(web);
+Module module1 = new Module("CO452", "Program Concepts");
+web.addModule(1, module1);
+Module module2 = new Module("CO453", "Applications Programming");
+web.addModule(2, module2);
+Module module3 = new Module("CO457", "Business Models");
+web.addModule(3, module3);
+Module module4 = new Module("CO456", "Web Development");
+web.addModule(4, module4);
+module1.awardMark(50);
+module2.awardMark(60);
+module3.awardMark(70);
+module4.awardMark(80);
+module2.isComplete()
+    returned boolean true
+module2.print();
+Module CO453 Applications Programming mark = 60
+web.printModules();
+Module CO452 Program Concepts mark = 50
+Module CO453 Applications Programming mark = 60
+Module CO457 Business Models mark = 70
+Module CO456 Web Development mark = 80
+web.printGrade();
+Your final grade is A

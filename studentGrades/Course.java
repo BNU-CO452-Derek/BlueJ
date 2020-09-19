@@ -8,13 +8,16 @@
  */
 public class Course
 {
-    // instance variables - replace the example below with your own
+    public static final int MAX_MODULES = 4;
+    
     private String codeNo;
     private String title;
     
     private int noModules;
     private int totalCredits;
     private int totalMark;
+    private int meanMark;
+    
     private boolean complete;
     
     private Module module1;
@@ -41,7 +44,7 @@ public class Course
      */
     public void addModule(int number, Module module)
     {
-        if((number >= 1) && (number <= 4)) noModules++;
+        if((number >= 1) && (number <= MAX_MODULES)) noModules++;
         
         switch(number)
         {
@@ -74,7 +77,7 @@ public class Course
     
    public void printGrade()
    {
-       if(noModules == 4)
+       if(noModules == MAX_MODULES)
        {
            totalMark = 0;
            
@@ -83,10 +86,10 @@ public class Course
            addMark(module3);
            addMark(module4);
            
-           if(totalCredits == 120)
+           if(totalCredits == MAX_MODULES *  Module.CREDIT)
            {
-               System.out.println("Your final grade is " + 
-               calculateGrade());
+               System.out.println("Your final  mark is " + meanMark + 
+                                  " your final grade is " + calculateGrade());
            }
            else
            {
@@ -106,19 +109,21 @@ public class Course
    
    private String calculateGrade()
    {
-       if(totalMark <= 40)
+       meanMark = totalMark / MAX_MODULES;
+       
+       if(meanMark <= 40)
        {
            return "F";
        }
-       else if(totalMark <= 50)
+       else if(meanMark <= 50)
        {
            return "D";
        }
-       else if(totalMark <= 60)
+       else if(meanMark <= 60)
        {
            return "C";
        }
-       else if(totalMark <= 70)
+       else if(meanMark <= 70)
        {
            return "B";
        }
