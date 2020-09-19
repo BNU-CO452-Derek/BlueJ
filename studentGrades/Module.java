@@ -10,7 +10,7 @@
  */
 public class Module
 {
-    public static final int CREDIT = 20;
+    public static final int CREDIT = 30;
     
     private String code;
     private String title;
@@ -41,8 +41,37 @@ public class Module
         return mark;
     }
     
+    /***
+     * A mark has been awarded and the module is
+     * completed
+     */
     public boolean isComplete()
     {
         return complete;
     }
+    
+    public void awardMark(int mark)
+    {
+        if((mark >= 0) && (mark <= 100))
+        {
+            this.mark = mark;
+            complete = true;
+        }
+    }
+    
+    public void print()
+    {
+        System.out.print("Module " + code);
+        System.out.print(" " + title);
+           
+        if(isComplete())
+        {
+            System.out.println(" mark = " + mark);
+        }
+        else
+        {
+            System.out.println(" is not completed yet!");
+        }
+        
+    }    
 }
