@@ -39,7 +39,7 @@ public class StockDemo
     public void printAllProducts()
     {
         // Show details of all of the products.
-        manager.printProductDetails();
+        manager.printAllProducts();
     }
     
     /**
@@ -47,7 +47,7 @@ public class StockDemo
      * its name and stock quantity will be shown.
      * @param id The ID of the product to look for.
      */
-    public void showDetails(int id)
+    public void printDetails(int id)
     {
         Product product = getProduct(id);
         
@@ -55,6 +55,11 @@ public class StockDemo
         {
             System.out.println(product.toString());
         }
+    }
+    
+    public void printOutofStocks()
+    {
+        manager.printOutofStockProducts();
     }
     
     /**
@@ -68,9 +73,9 @@ public class StockDemo
         
         if(product != null) 
         {
-            showDetails(id);
+            printDetails(id);
             product.sellOne();
-            showDetails(id);
+            printDetails(id);
         }
     }
     
