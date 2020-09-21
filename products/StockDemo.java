@@ -23,7 +23,7 @@ public class StockDemo
         manager.addProduct(new Product(101,"Samsung Galaxy S10", 7));
         manager.addProduct(new Product(102,"Samsung Galaxy S20", 2));
         manager.addProduct(new Product(103,"Google Pixel 4A", 1));
-        manager.addProduct(new Product(104,"Motorola G8 Power Lite", 10));
+        manager.addProduct(new Product(104,"Motorola G8 Power Lite", 0));
         manager.addProduct(new Product(105,"Motorola G8 Power", 3));
         manager.addProduct(new Product(106,"Huawei Mate 30 Pro", 1));
         manager.addProduct(new Product(107,"Huawei Mate Xs 5G", 1));
@@ -96,4 +96,22 @@ public class StockDemo
         }
         return product;
     }
+    
+    /**
+     * Demonstrate that the manager can increate stock
+     * levels for the given product id
+     */
+    public void reStock(int id, int amount)
+    {
+        manager.delivery(id, amount);
+    }
+    
+    public void removeProduct(int id)
+    {
+        printAllProducts();
+        manager.removeProduct(id);
+        printAllProducts();
+    }
+    
+    
 }

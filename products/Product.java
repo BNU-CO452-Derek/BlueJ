@@ -90,7 +90,7 @@ public class Product
         else 
         {
             System.out.println(
-                "Attempt to sell an out of stock item: " + name);
+                "\nAttempt to sell an out of stock item: " + name + "\n");
         }
     }
 }

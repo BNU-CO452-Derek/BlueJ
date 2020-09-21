@@ -37,6 +37,19 @@ public class StockManager
      */
     public void delivery(int id, int amount)
     {
+        Product product = findProduct(id);
+        
+        if(product == null)
+        {
+            System.out.println("\n Product ID" + id + " not found! \n"); 
+        }
+        else
+        {
+            System.out.println(product);
+            product.increaseQuantity(amount);
+            System.out.println("Re-stocking by " + amount);
+            System.out.println(product);
+        }
     }
     
     /**
@@ -87,7 +100,7 @@ public class StockManager
     }
     
     /**
-     * 
+    *  Print all product with zero quantity
     */
     public void printOutofStockProducts()
     {
@@ -108,4 +121,24 @@ public class StockManager
         System.out.println();
         System.out.println(" There were " + count + " out of stock products");
     }
+    
+    /**
+     * If the product exists that matches the id
+     * remove that product from the list.
+     */
+    public void removeProduct(int id)
+    {
+        Product product = findProduct(id);
+        
+        if(product == null)
+        {
+            System.out.println("\n Product ID " + id + " NOT FOUND!\n");
+        }
+        else
+        {
+            stock.remove(product);
+            System.out.println("\n Product ID " + id + " REMOVED!\n");            
+        }
+    }
+    
 }
