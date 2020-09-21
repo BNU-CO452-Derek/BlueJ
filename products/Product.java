@@ -19,11 +19,11 @@ public class Product
      * @param id The product's identifying number.
      * @param name The product's name.
      */
-    public Product(int id, String name)
+    public Product(int id, String name, int quantity)
     {
         this.id = id;
         this.name = name;
-        quantity = 0;
+        this.quantity = quantity;
     }
 
     /**
