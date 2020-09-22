@@ -68,6 +68,22 @@ public class StockDemo
     }
     
     /**
+     * Demonstrate that the StockManager can sell
+     * products
+     */
+    public void sellProducts()
+    {
+        printAllProducts();
+
+        for(int id = 0; id <= 5; id++)
+        {
+            sellProduct(id);
+        }
+        
+        printAllProducts();
+    }
+    
+    /**
      * Sell one of the given product item.
      * Print the before and after status of the product.
      * @param id The ID of the product being sold.
