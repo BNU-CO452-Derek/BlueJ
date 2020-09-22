@@ -41,8 +41,6 @@ public class StockDemo
        System.out.println("     by Derek Peacock ");
        System.out.println("*******************************\n");
        
-       manager.searchProducts("Apple");
-       
        manager.printAllProducts();
        
        manager.removeProduct(102);
@@ -52,6 +50,7 @@ public class StockDemo
        
        manager.restockLowProducts(3);
        
+       manager.searchProducts("Apple");
     }
     
    
