@@ -5,6 +5,9 @@
  * 
  * @author David J. Barnes and Michael Kölling.
  * @version 2016.02.29
+ * 
+ * @modifed by Derek Peacock
+ * 22/Sep/2020
  */
 public class StockDemo
 {
@@ -32,9 +35,7 @@ public class StockDemo
     }
     
     /**
-     * Provide a very simple demonstration of how a StockManager
-     * might be used. Details of one product are shown, the
-     * product is restocked, and then the details are shown again.
+     * Print out the details of each product in the stock list
      */
     public void printAllProducts()
     {
@@ -57,14 +58,18 @@ public class StockDemo
         }
     }
     
+    /**
+     * Print a list of all the products in the stock whose
+     * quantities are zero and need re-ordering
+     */
     public void printOutofStocks()
     {
         manager.printOutofStockProducts();
     }
     
     /**
-     * Sell one of the given item.
-     * Show the before and after status of the product.
+     * Sell one of the given product item.
+     * Print the before and after status of the product.
      * @param id The ID of the product being sold.
      */
     public void sellProduct(int id)
@@ -98,7 +103,7 @@ public class StockDemo
     }
     
     /**
-     * Demonstrate that the manager can increate stock
+     * Demonstrate that the stock manager can increase stock
      * levels for the given product id
      */
     public void reStock(int id, int amount)
@@ -106,6 +111,10 @@ public class StockDemo
         manager.delivery(id, amount);
     }
     
+    /**
+     * Demonstrate that a product can be removed from
+     * the stock by the StockManager
+     */
     public void removeProduct(int id)
     {
         printAllProducts();
