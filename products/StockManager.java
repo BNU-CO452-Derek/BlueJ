@@ -76,6 +76,24 @@ public class StockManager
         return product;
     }
     
+    public void searchProducts(String targetPhrase)
+    {
+        int count = 0;
+        System.out.println("\nSearching for " + targetPhrase + "\n");
+        
+        for(Product product : stock)
+        {
+            if(product.getName().contains(targetPhrase))
+            {
+                System.out.println(product);
+                count++;
+            }
+        }
+        
+        System.out.println("\nThere are " + count + " products containing " + 
+                            targetPhrase + " in their name!\n");
+    }
+    
     /**
      * Locate a product with the given ID, and return how
      * many of this item are in stock. If the ID does not
@@ -102,8 +120,9 @@ public class StockManager
     /**
     *  Print all product with zero quantity
     */
-    public void printOutofStockProducts()
+    public ArrayList<Product> printLowStockProducts(int minimum)
     {
+        ArrayList<Product> lowStock = new ArrayList<Product>();
         int count = 0;
         
         System.out.println(" Printing all out of stock products");
@@ -111,15 +130,36 @@ public class StockManager
         
         for(Product product : stock)
         {
-            if(product.getQuantity() == 0)
+            if(product.getQuantity() <= minimum)
             {
                 count++;
+                lowStock.add(product);
                 System.out.println(product);
             }
         }
         
         System.out.println();
-        System.out.println(" There were " + count + " out of stock products");
+        System.out.println("There were " + count + 
+                           " stock products with less than " + minimum +
+                           " items\n");
+        return lowStock;
+    }
+    
+    /**
+     * Increase the quantity of stock for all products in the lowStock
+     * ArrayList.
+     */
+    public void restockLowProducts(int minimum)
+    {
+       ArrayList<Product> lowStock = printLowStockProducts(minimum);
+       
+       System.out.println("\nRe-Stocking to a minimum level of " + 
+                          minimum + "\n");
+                          
+       for(Product product : lowStock)
+       {
+          product.increaseQuantity(minimum - product.getQuantity()); 
+       }
     }
     
     /**
@@ -141,4 +181,21 @@ public class StockManager
         }
     }
     
+    public void renameProduct(int id, String newName)
+    {
+        Product product = findProduct(id);
+        
+        if(product == null)
+        {
+            System.out.println(" Product id = " + id + " not found!");
+        }
+        else
+        {
+            System.out.println(product);
+            product.setName(newName);
+            System.out.println("***RENAMED***");
+            System.out.println(product);
+        }
+        
+    }
 }

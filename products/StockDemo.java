@@ -25,7 +25,7 @@ public class StockDemo
         manager.addProduct(new Product(100,"Apple iPhone 11", 4));
         manager.addProduct(new Product(101,"Samsung Galaxy S10", 7));
         manager.addProduct(new Product(102,"Samsung Galaxy S20", 2));
-        manager.addProduct(new Product(103,"Google Pixel 4A", 1));
+        manager.addProduct(new Product(103,"Gogle Pixel 4A", 1));
         manager.addProduct(new Product(104,"Motorola G8 Power Lite", 0));
         manager.addProduct(new Product(105,"Motorola G8 Power", 3));
         manager.addProduct(new Product(106,"Huawei Mate 30 Pro", 1));
@@ -34,15 +34,27 @@ public class StockDemo
         manager.addProduct(new Product(109,"Apple iPhone 12", 10));
     }
     
-    /**
-     * Print out the details of each product in the stock list
-     */
-    public void printAllProducts()
+    public void runDemo()
     {
-        // Show details of all of the products.
-        manager.printAllProducts();
+       System.out.println("\n*******************************");
+       System.out.println("  Products Management Demo");
+       System.out.println("     by Derek Peacock ");
+       System.out.println("*******************************\n");
+       
+       manager.searchProducts("Apple");
+       
+       manager.printAllProducts();
+       
+       manager.removeProduct(102);
+       manager.renameProduct(103, "Google Pixel 4A");
+       
+       sellProducts();
+       
+       manager.restockLowProducts(3);
+       
     }
     
+   
     /**
      * Show details of the given product. If found,
      * its name and stock quantity will be shown.
@@ -59,28 +71,15 @@ public class StockDemo
     }
     
     /**
-     * Print a list of all the products in the stock whose
-     * quantities are zero and need re-ordering
-     */
-    public void printOutofStocks()
-    {
-        manager.printOutofStockProducts();
-    }
-    
-    /**
      * Demonstrate that the StockManager can sell
      * products
      */
     public void sellProducts()
     {
-        printAllProducts();
-
-        for(int id = 0; id <= 5; id++)
+        for(int id = 100; id <= 109; id++ )
         {
             sellProduct(id);
         }
-        
-        printAllProducts();
     }
     
     /**
@@ -94,6 +93,7 @@ public class StockDemo
         
         if(product != null) 
         {
+            System.out.println();
             printDetails(id);
             product.sellOne();
             printDetails(id);
@@ -133,9 +133,9 @@ public class StockDemo
      */
     public void removeProduct(int id)
     {
-        printAllProducts();
+        manager.printAllProducts();
         manager.removeProduct(id);
-        printAllProducts();
+        manager.printAllProducts();
     }
     
     

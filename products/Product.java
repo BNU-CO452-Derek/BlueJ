@@ -90,7 +90,16 @@ public class Product
         else 
         {
             System.out.println(
-                "\nAttempt to sell an out of stock item: " + name + "\n");
+                "Attempt to sell an out of stock item: " + id + ":" + name);
         }
+    }
+    
+    /**
+     * The products name should only be changed if there is
+     * a spelling mistake, otherwise it will cause confusion
+     */
+    public void setName(String newName)
+    {
+        name = newName;
     }
 }
