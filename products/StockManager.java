@@ -95,18 +95,6 @@ public class StockManager
     }
     
     /**
-     * Locate a product with the given ID, and return how
-     * many of this item are in stock. If the ID does not
-     * match any product, return zero.
-     * @param id The ID of the product.
-     * @return The quantity of the given product in stock.
-     */
-    public int numberInStock(int id)
-    {
-        return 0;
-    }
-
-    /**
      * Print details of all the products.
      */
     public void printAllProducts()
