@@ -23,7 +23,6 @@ public class StockApp
         input = new InputReader();
     }
 
-
     
     public void run()
     {
@@ -44,6 +43,7 @@ public class StockApp
             printMenuChoices();
             String choice = input.getInput();
             executeMenuChoice(choice);
+            finished = true;
         }
     }
     
@@ -53,8 +53,6 @@ public class StockApp
      */
     private void executeMenuChoice(String choice)
     {
-        
-        
     }
     
     /**
@@ -62,11 +60,12 @@ public class StockApp
      */
     private void printMenuChoices()
     {
-        System.out.println("Add:      Add a new product");
-        System.out.println("Remove:   Remove an old product");
-        System.out.println("PrintAll: Print all products");
-        System.out.println("Quit:     Quit the program");
-        
+        System.out.println();
+        System.out.println("    Add:         Add a new product");
+        System.out.println("    Remove:      Remove an old product");
+        System.out.println("    PrintAll:    Print all products");
+        System.out.println("    Quit:        Quit the program");
+        System.out.println();
     }
     
     /**
