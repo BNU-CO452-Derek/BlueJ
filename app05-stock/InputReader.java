@@ -21,16 +21,34 @@ public class InputReader
     }
 
     /**
-     * Read a line of text from standard input (the text terminal),
-     * and return it as a String.
+     * Prompt the user to enter a string
+     * Read a line of text from standard input 
+     * (the text terminal),
+     * and return a String.
      *
      * @return  A String typed by the user.
      */
-    public String getInput()
+    public String getInput(String prompt)
     {
         System.out.print("> ");         // print prompt
         String inputLine = reader.nextLine();
 
         return inputLine;
     }
+    
+    /**
+     * Prompt the user to enter an int
+     * Read an int from standard input 
+     * (the text terminal),
+     * and return it as an int.
+     *
+     * @return  A String typed by the user.
+     */
+    public int getInt(String prompt)
+    {
+        System.out.print(prompt);         // print prompt
+        int value = reader.nextInt();
+
+        return value;
+    }    
 }

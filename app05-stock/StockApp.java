@@ -12,7 +12,7 @@ public class StockApp
     // instance variables - replace the example below with your own
     private StockManager manager;
 
-    private InputReader input;
+    private InputReader reader;
     
     /**
      * Constructor for objects of class StockApp
@@ -20,7 +20,7 @@ public class StockApp
     public StockApp()
     {
         manager = new StockManager();
-        input = new InputReader();
+        reader = new InputReader();
     }
 
     
@@ -41,9 +41,18 @@ public class StockApp
         {
             printHeading();
             printMenuChoices();
-            String choice = input.getInput();
-            executeMenuChoice(choice);
-            finished = true;
+            
+            String prompt = "\nEnter your choice > ";
+            String choice = reader.getInput(prompt).toLowerCase();
+            
+            if(choice.startsWith("quit"))
+            {
+                finished = true;
+            }
+            else
+            {
+                executeMenuChoice(choice);
+            }
         }
     }
     
@@ -53,6 +62,27 @@ public class StockApp
      */
     private void executeMenuChoice(String choice)
     {
+        if(choice.startsWith("add"))
+        {
+            addProduct();
+        }
+    }
+    
+    private void addProduct()
+    {
+        System.out.println(" Adding a new Product\n");
+        
+        String prompt = "\n Please enter the product code > ";
+        int code = reader.getInt(prompt);
+
+        prompt = "\n Please enter the product name > ";
+        String name = reader.getInput(prompt);    
+        
+        Product product = new Product(code, name);
+        manager.addProduct(product);
+        
+        System.out.println("\n" + product + " added!\n");
+        
     }
     
     /**
