@@ -73,12 +73,12 @@ public class StockApp
         System.out.println(" Adding a new Product\n");
         
         String prompt = "\n Please enter the product code > ";
-        int code = reader.getInt(prompt);
+        String code = reader.getInput(prompt);
 
         prompt = "\n Please enter the product name > ";
         String name = reader.getInput(prompt);    
         
-        Product product = new Product(code, name);
+        Product product = new Product(100, name);
         manager.addProduct(product);
         
         System.out.println("\n" + product + " added!\n");

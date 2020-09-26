@@ -30,7 +30,7 @@ public class InputReader
      */
     public String getInput(String prompt)
     {
-        System.out.print("> ");         // print prompt
+        System.out.println(prompt);   
         String inputLine = reader.nextLine();
 
         return inputLine;
@@ -46,7 +46,7 @@ public class InputReader
      */
     public int getInt(String prompt)
     {
-        System.out.print(prompt);         // print prompt
+        System.out.println(prompt); 
         int value = reader.nextInt();
 
         return value;
