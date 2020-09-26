@@ -44,6 +44,7 @@ public class StockApp
             
             String prompt = "\nEnter your choice > ";
             String choice = reader.getInput(prompt).toLowerCase();
+            System.out.println();
             
             if(choice.startsWith("quit"))
             {
@@ -66,20 +67,28 @@ public class StockApp
         {
             addProduct();
         }
+        else if(choice.startsWith("printall"))
+        {
+            System.out.println("Printing All Products");
+            System.out.println("---------------------\n");
+            
+            manager.printAllProducts();
+        }
     }
     
     private void addProduct()
     {
         System.out.println(" Adding a new Product\n");
         
-        String prompt = "\n Please enter the product code > ";
-        String code = reader.getInput(prompt);
+        String prompt = "\n Please enter the product code number > ";
+        int code = reader.getInt(prompt);
 
         prompt = "\n Please enter the product name > ";
         String name = reader.getInput(prompt);    
         
-        Product product = new Product(100, name);
+        Product product = new Product(code, name);
         manager.addProduct(product);
+        manager.delivery(code,1);
         
         System.out.println("\n" + product + " added!\n");
         

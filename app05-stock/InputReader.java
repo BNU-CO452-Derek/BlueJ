@@ -47,8 +47,10 @@ public class InputReader
     public int getInt(String prompt)
     {
         System.out.println(prompt); 
-        int value = reader.nextInt();
-
-        return value;
+        String value = reader.nextLine();
+        //int number = reader.nextInt();
+        
+        int number = Integer.parseInt(value);
+        return number;
     }    
 }
