@@ -102,7 +102,7 @@ public class StockApp
         System.out.println();
         System.out.println("    Add:         Add a new product");
         System.out.println("    Remove:      Remove an old product");
-        System.out.println("    PrintAll:    Print all products");
+        System.out.println("    Print:       Print all products");
         System.out.println("    Quit:        Quit the program");
         System.out.println();
     }
