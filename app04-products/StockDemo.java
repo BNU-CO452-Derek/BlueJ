@@ -18,9 +18,9 @@ public class StockDemo
      * Create a StockManager and populate it with
      * 10 sample products.
      */
-    public StockDemo()
+    public StockDemo(StockManager manager)
     {
-        manager = new StockManager();
+        this.manager = manager;
         
         manager.addProduct(new Product(100,"Apple iPhone 11", 4));
         manager.addProduct(new Product(101,"Samsung Galaxy S10", 7));
@@ -55,21 +55,6 @@ public class StockDemo
     
    
     /**
-     * Show details of the given product. If found,
-     * its name and stock quantity will be shown.
-     * @param id The ID of the product to look for.
-     */
-    public void printDetails(int id)
-    {
-        Product product = getProduct(id);
-        
-        if(product != null) 
-        {
-            System.out.println(product.toString());
-        }
-    }
-    
-    /**
      * Demonstrate that the StockManager can sell
      * products
      */
@@ -88,34 +73,17 @@ public class StockDemo
      */
     public void sellProduct(int id)
     {
-        Product product = getProduct(id);
+        Product product = manager.findProduct(id);
         
         if(product != null) 
         {
             System.out.println();
-            printDetails(id);
+            manager.printProduct(id);
             product.sellOne();
-            printDetails(id);
+            manager.printProduct(id);
         }
     }
     
-    /**
-     * Get the product with the given id from the manager.
-     * An error message is printed if there is no match.
-     * @param id The ID of the product.
-     * @return The Product, or null if no matching one is found.
-     */
-    public Product getProduct(int id)
-    {
-        Product product = manager.findProduct(id);
-        
-        if(product == null) 
-        {
-            System.out.println("Product with ID: " + id +
-                               " is not recognised.");
-        }
-        return product;
-    }
     
     /**
      * Demonstrate that the stock manager can increase stock

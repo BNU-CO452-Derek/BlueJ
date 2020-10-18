@@ -184,6 +184,20 @@ public class StockManager
             System.out.println("***RENAMED***");
             System.out.println(product);
         }
-        
     }
+    
+    /**
+     * Show details of the given product. If found,
+     * its name and stock quantity will be shown.
+     * @param id The ID of the product to look for.
+     */
+    public void printProduct(int id)
+    {
+        Product product = findProduct(id);
+        
+        if(product != null) 
+        {
+            System.out.println(product.toString());
+        }
+    }    
 }
