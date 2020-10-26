@@ -18,8 +18,13 @@ import java.util.Iterator;
 
 public class Room 
 {
+    private String name;
+    
     private String description;
+    
     private HashMap<String, Room> exits;        // stores exits of this room.
+    
+    
 
     /**
      * Create a room described "description". Initially, it has
