@@ -33,7 +33,7 @@ public class Game
         player = new Player(playerName);
         
         map = new Map();
-        currentRoom = map.createRooms();
+        currentRoom = map.create();
         
         parser = new Parser();
     }
@@ -67,7 +67,7 @@ public class Game
     {
         System.out.println();
         System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("World of Zuul is a new, incredibly exiting adventure game.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
@@ -98,6 +98,10 @@ public class Game
                 goRoom(command);
                 break;
 
+            case LOOK:
+                System.out.println(currentRoom.getLongDescription());
+                break;
+                
             case QUIT:
                 wantToQuit = quit(command);
                 break;
@@ -114,8 +118,7 @@ public class Game
      */
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("You are currently " + currentRoom.getShortDescription());
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -139,15 +142,21 @@ public class Game
         // Try to leave current room.
         Room nextRoom = currentRoom.getExit(direction);
 
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
+        if (nextRoom == null) 
+        {
+            System.out.println("There is no exit!");
         }
-        else {
+        else 
+        {
             currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
+            System.out.println(currentRoom.getShortDescription());
         }
     }
 
+    public void lookAround(Command command)
+    {
+    }
+    
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
@@ -155,11 +164,13 @@ public class Game
      */
     private boolean quit(Command command) 
     {
-        if(command.hasSecondWord()) {
+        if(command.hasSecondWord()) 
+        {
             System.out.println("Quit what?");
             return false;
         }
-        else {
+        else 
+        {
             return true;  // signal that we want to quit
         }
     }

@@ -46,5 +46,28 @@ public class Map
         return outside;  // start game outside
     }
     
+    public Room create()
+    {
+        Room outside = new Room("outside Brick Building");
+
+        String description;
+        description = "standing at the end of a road before a small\n";
+        description += "brick building. Around you is a forest.  A small\n";
+        description += "stream flows out of the building and down a gully\n.";
+        
+        outside.setDescription(description);
+        
+        Room building = new Room("inside Brick Building");
+        
+        description = "in a well house for a large spring.  There are some\n";
+        description += "keys on the ground here.";
+        
+        building.setDescription(description);
+        outside.setExit("north", building);
+        building.setExit("south", outside);
+        
+        return outside;
+    }
+    
 
 }
