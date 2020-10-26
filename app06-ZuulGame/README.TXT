@@ -1,12 +1,11 @@
 ------------------------------------------------------------------------
-This is the project README file. Here, you should describe your project.
-Tell the reader (someone who does not know anything about this project)
-all he/she needs to know. The comments should usually include at least:
+This is a model answer for App06 Zuul Game from the BlueJ Book
+Used as part of CO452 Programming Concepts 2020
 ------------------------------------------------------------------------
 
-PROJECT TITLE:
-PURPOSE OF PROJECT:
-VERSION or DATE:
-HOW TO START THIS PROJECT:
-AUTHORS:
+PROJECT TITLE: Derel's Zuul Game
+PURPOSE OF PROJECT: App06 Model Answer
+VERSION or DATE: 26th October 2020
+HOW TO START THIS PROJECT: 
+AUTHORS: Derek Peacock & Nicholas Day
 USER INSTRUCTIONS:
