@@ -64,7 +64,7 @@ public class StockManager
         
         if(product != null) 
         {
-            System.out.println("Selling Product: ");
+            System.out.println("Selling Product: Order Quantity = " + quantity);
             printProduct(id);
 
             int noSold = quantity;
@@ -78,7 +78,7 @@ public class StockManager
                 product.sellOne();
             }
             
-            System.out.println(noSold + " items sold!\n");
+            System.out.println("  " + noSold + " items sold!\n");
         }
     }
     

@@ -96,7 +96,7 @@ public class StockDemo
         
         for(int id = FIRST_ID; id < LAST_ID; id++ )
         {
-            int quantity = randomGenerator.nextInt();
+            int quantity = randomGenerator.nextInt(6) + 1;
             manager.sellProduct(id, quantity);
         }
         
