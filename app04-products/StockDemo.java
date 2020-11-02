@@ -63,26 +63,20 @@ public class StockDemo
     
     public void runDemo()
     {
-       System.out.println("\n*******************************");
-       System.out.println("  Products Management Demo");
-       System.out.println("     by Derek Peacock ");
-       System.out.println("*******************************\n");
-       
        manager.printAllProducts();
-       demoDeliverAllProducts();
+       demoDeliverProducts();
+       manager.printAllProducts();
+       demoSellProducts();
        manager.printAllProducts();
        
-       // manager.removeProduct(102);
-       // manager.renameProduct(103, "Google Pixel 4A");
-       
-       // demoSellProducts();
+       manager.removeProduct(102);
+       manager.renameProduct(103, "Google Pixel 4A");
        
        // manager.restockLowProducts(3);
-       
        // manager.searchProducts("Apple");
     }
     
-    public void demoDeliverAllProducts()
+    private void demoDeliverProducts()
     {
        for(int id = FIRST_ID; id < LAST_ID; id++)
        {
@@ -96,28 +90,20 @@ public class StockDemo
      * Demonstrate that the StockManager can sell all
      * different quantities of all of the products
      */
-    public void demoSellProducts()
+    private void demoSellProducts()
     {
         manager.printAllProducts();
         
         for(int id = FIRST_ID; id < LAST_ID; id++ )
         {
-            int qualtity = randomGenerator.nextInt();
-            manager.sellProduct(id, 2);
+            int quantity = randomGenerator.nextInt();
+            manager.sellProduct(id, quantity);
         }
         
         manager.printAllProducts();
     }
     
-    /**
-     * Demonstrate that the stock manager can increase stock
-     * levels for the given product id
-     */
-    public void reStock(int id, int amount)
-    {
-        manager.takeDelivery(id, amount);
-    }
-    
+   
     /**
      * Demonstrate that a product can be removed from
      * the stock by the StockManager

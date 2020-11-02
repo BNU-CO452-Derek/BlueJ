@@ -47,7 +47,7 @@ public class StockManager
         {
             System.out.println("\n" + product);
             product.increaseQuantity(amount);
-            System.out.println("Re-stocked by " + amount);
+            System.out.println("    ** Re-Stocked by " + amount + " ***");
             System.out.println(product + "\n");
         }
     }
@@ -130,7 +130,7 @@ public class StockManager
     public void printAllProducts()
     {
        System.out.println("\n*******************************");
-       System.out.println("  Products Management Demo");
+       System.out.println("  Products Management System");
        System.out.println("     by Derek Peacock ");
        System.out.println("*******************************\n");
        
