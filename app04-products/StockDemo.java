@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * Demonstrate the StockManager and Product classes.
  * The demonstration becomes properly functional as
@@ -11,8 +13,13 @@
  */
 public class StockDemo
 {
+    public static final int FIRST_ID = 100;
+    public static final int LAST_ID = 109;
+    
     // The stock manager.
     private StockManager manager;
+    
+    private Random randomGenerator;
 
     /**
      * Create a StockManager and populate it with
@@ -20,18 +27,38 @@ public class StockDemo
      */
     public StockDemo(StockManager manager)
     {
+        randomGenerator = new Random();
         this.manager = manager;
         
-        manager.addProduct(new Product(100,"Apple iPhone 11", 4));
-        manager.addProduct(new Product(101,"Samsung Galaxy S10", 7));
-        manager.addProduct(new Product(102,"Samsung Galaxy S20", 2));
-        manager.addProduct(new Product(103,"Gogle Pixel 4A", 1));
-        manager.addProduct(new Product(104,"Motorola G8 Power Lite", 0));
-        manager.addProduct(new Product(105,"Motorola G8 Power", 3));
-        manager.addProduct(new Product(106,"Huawei Mate 30 Pro", 1));
-        manager.addProduct(new Product(107,"Huawei Mate Xs 5G", 1));
-        manager.addProduct(new Product(108,"Sony Xperia 5", 8));
-        manager.addProduct(new Product(109,"Apple iPhone 12", 10));
+        int id = FIRST_ID;
+        manager.addProduct(new Product(id,"Apple iPhone 11"));
+        
+        id++;
+        manager.addProduct(new Product(id,"Samsung Galaxy S10"));
+        
+        id++; 
+        manager.addProduct(new Product(id,"Samsung Galaxy S20"));
+        
+        id++; 
+        manager.addProduct(new Product(id,"Gogle Pixel 4A"));
+        
+        id++; 
+        manager.addProduct(new Product(id,"Motorola G8 Power Lite"));
+        
+        id++; 
+        manager.addProduct(new Product(id,"Motorola G8 Power"));
+        
+        id++; 
+        manager.addProduct(new Product(id,"Huawei Mate 30 Pro"));
+        
+        id++; 
+        manager.addProduct(new Product(id,"Huawei Mate Xs 5G"));
+        
+        id++; 
+        manager.addProduct(new Product(id,"Sony Xperia 5"));
+        
+        id++; 
+        manager.addProduct(new Product(id,"Apple iPhone 12"));
     }
     
     public void runDemo()
@@ -42,48 +69,45 @@ public class StockDemo
        System.out.println("*******************************\n");
        
        manager.printAllProducts();
+       demoDeliverAllProducts();
+       manager.printAllProducts();
        
-       manager.removeProduct(102);
-       manager.renameProduct(103, "Google Pixel 4A");
+       // manager.removeProduct(102);
+       // manager.renameProduct(103, "Google Pixel 4A");
        
-       sellProducts();
+       // demoSellProducts();
        
-       manager.restockLowProducts(3);
+       // manager.restockLowProducts(3);
        
-       manager.searchProducts("Apple");
+       // manager.searchProducts("Apple");
     }
     
+    public void demoDeliverAllProducts()
+    {
+       for(int id = FIRST_ID; id < LAST_ID; id++)
+       {
+           int quantity = randomGenerator.nextInt(6) + 1;
+           manager.takeDelivery(id, quantity);
+       }
+    }
+   
    
     /**
-     * Demonstrate that the StockManager can sell
-     * products
+     * Demonstrate that the StockManager can sell all
+     * different quantities of all of the products
      */
-    public void sellProducts()
+    public void demoSellProducts()
     {
-        for(int id = 100; id <= 109; id++ )
-        {
-            sellProduct(id);
-        }
-    }
-    
-    /**
-     * Sell one of the given product item.
-     * Print the before and after status of the product.
-     * @param id The ID of the product being sold.
-     */
-    public void sellProduct(int id)
-    {
-        Product product = manager.findProduct(id);
+        manager.printAllProducts();
         
-        if(product != null) 
+        for(int id = FIRST_ID; id < LAST_ID; id++ )
         {
-            System.out.println();
-            manager.printProduct(id);
-            product.sellOne();
-            manager.printProduct(id);
+            int qualtity = randomGenerator.nextInt();
+            manager.sellProduct(id, 2);
         }
+        
+        manager.printAllProducts();
     }
-    
     
     /**
      * Demonstrate that the stock manager can increase stock
@@ -91,7 +115,7 @@ public class StockDemo
      */
     public void reStock(int id, int amount)
     {
-        manager.delivery(id, amount);
+        manager.takeDelivery(id, amount);
     }
     
     /**

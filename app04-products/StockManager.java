@@ -35,7 +35,7 @@ public class StockManager
      * @param id The ID of the product.
      * @param amount The amount to increase the quantity by.
      */
-    public void delivery(int id, int amount)
+    public void takeDelivery(int id, int amount)
     {
         Product product = findProduct(id);
         
@@ -45,10 +45,40 @@ public class StockManager
         }
         else
         {
-            System.out.println(product);
+            System.out.println("\n" + product);
             product.increaseQuantity(amount);
-            System.out.println("Re-stocking by " + amount);
-            System.out.println(product);
+            System.out.println("Re-stocked by " + amount);
+            System.out.println(product + "\n");
+        }
+    }
+    
+    /**
+     * Sell the given product with matching id quantity
+     * times providing there are suficient numbers in stock.
+     * Otherwise sell as many as possible.
+     * @param id The ID of the product being sold.
+     */
+    public void sellProduct(int id, int quantity)
+    {
+        Product product = findProduct(id);
+        
+        if(product != null) 
+        {
+            System.out.println("Selling Product: ");
+            printProduct(id);
+
+            int noSold = quantity;
+            if(noSold > product.getQuantity())
+            {
+                noSold = product.getQuantity();
+            }
+            
+            for(int count = 0; count < noSold; count++)
+            {
+                product.sellOne();
+            }
+            
+            System.out.println(noSold + " items sold!\n");
         }
     }
     
@@ -99,10 +129,17 @@ public class StockManager
      */
     public void printAllProducts()
     {
+       System.out.println("\n*******************************");
+       System.out.println("  Products Management Demo");
+       System.out.println("     by Derek Peacock ");
+       System.out.println("*******************************\n");
+       
         for(Product product : stock)
         {
             System.out.println(product);
         }
+        
+        System.out.println();
     }
     
     /**
@@ -197,7 +234,7 @@ public class StockManager
         
         if(product != null) 
         {
-            System.out.println(product.toString());
+            System.out.println(product);
         }
     }    
 }

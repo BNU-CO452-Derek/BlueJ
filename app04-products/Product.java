@@ -19,11 +19,11 @@ public class Product
      * @param id The product's identifying number.
      * @param name The product's name.
      */
-    public Product(int id, String name, int quantity)
+    public Product(int id, String name)
     {
         this.id = id;
         this.name = name;
-        this.quantity = quantity;
+        quantity = 0;
     }
 
     /**
@@ -81,16 +81,19 @@ public class Product
      * Sell one of these products.
      * An error is reported if there appears to be no stock.
      */
-    public void sellOne()
+    public boolean sellOne()
     {
         if(quantity > 0) 
         {
             quantity--;
+            return true;
         }
         else 
         {
             System.out.println(
                 "Attempt to sell an out of stock item: " + id + ":" + name);
+            
+                return false;
         }
     }
     
