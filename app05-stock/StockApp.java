@@ -67,6 +67,10 @@ public class StockApp
         {
             addProduct();
         }
+        else if(choice.startsWith("remove"))
+        {
+            removeProduct();
+        }        
         else if(choice.startsWith("printall"))
         {
             System.out.println("Printing All Products");
@@ -88,10 +92,29 @@ public class StockApp
         
         Product product = new Product(code, name);
         manager.addProduct(product);
-        manager.delivery(code,1);
+        manager.takeDelivery(code,1);
         
         System.out.println("\n" + product + " added!\n");
         
+    }
+
+    private void removeProduct()
+    {
+        System.out.println(" Removing an old Product\n");
+        
+        String prompt = "\n Please enter the product code number > ";
+        int id = reader.getInt(prompt);
+
+        Product product = manager.findProduct(id);
+        if(product != null)
+        {
+            manager.removeProduct(id);
+            System.out.println("\n" + product + " removed!\n");
+        }
+        else
+        {
+            System.out.println("Product " + id + " not found!!!");
+        }
     }
     
     /**

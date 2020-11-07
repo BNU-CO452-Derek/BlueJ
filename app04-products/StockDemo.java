@@ -70,10 +70,10 @@ public class StockDemo
        manager.printAllProducts();
        
        manager.removeProduct(102);
-       manager.renameProduct(103, "Google Pixel 4A");
        
-       // manager.restockLowProducts(3);
-       // manager.searchProducts("Apple");
+       manager.renameProduct(103, "Google Pixel 4A");
+       //manager.restockLowProducts(3);
+       manager.searchProducts("Apple");
     }
     
     private void demoDeliverProducts()
@@ -102,18 +102,4 @@ public class StockDemo
         
         manager.printAllProducts();
     }
-    
-   
-    /**
-     * Demonstrate that a product can be removed from
-     * the stock by the StockManager
-     */
-    public void removeProduct(int id)
-    {
-        manager.printAllProducts();
-        manager.removeProduct(id);
-        manager.printAllProducts();
-    }
-    
-    
 }
