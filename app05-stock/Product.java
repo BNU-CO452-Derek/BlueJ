@@ -51,14 +51,6 @@ public class Product
     }
 
     /**
-     * @return The id, name and quantity in stock.
-     */
-    public String toString()
-    {
-        return id + ": " +  name + " stock level: " + quantity;
-    }
-
-    /**
      * Restock with the given amount of this product.
      * The current quantity is incremented by the given amount.
      * @param amount The number of new items added to the stock.
@@ -81,13 +73,21 @@ public class Product
      * Sell one of these products.
      * An error is reported if there appears to be no stock.
      */
-    public void sellOne()
+    public void sell(int amount)
     {
-        if(quantity > 0) 
+        if(quantity > amount) 
         {
-            quantity--;
+            quantity -= amount;
         }
-        else 
+        else if(quantity > 0)
+        {
+            System.out.println(
+                "Sold " + quantity + " of " + id + ":" + name + 
+                " " + (amount - quantity) + " orders not met!");
+
+            quantity = 0;
+        }
+        else
         {
             System.out.println(
                 "Attempt to sell an out of stock item: " + id + ":" + name);
@@ -101,5 +101,13 @@ public class Product
     public void setName(String newName)
     {
         name = newName;
+    }
+    
+    /**
+     * @return The id, name and quantity in stock.
+     */
+    public String toString()
+    {
+        return id + ": " +  name + " stock level: " + quantity;
     }
 }
