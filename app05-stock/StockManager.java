@@ -11,7 +11,7 @@ public class StockManager
 {
     // A list of the products.
     private ArrayList<Product> stock;
-
+    
     /**
      * Initialise the stock manager.
      */
@@ -35,7 +35,7 @@ public class StockManager
      * @param id The ID of the product.
      * @param amount The amount to increase the quantity by.
      */
-    public void delivery(int id, int amount)
+    public void takeDelivery(int id, int amount)
     {
         Product product = findProduct(id);
         
@@ -186,6 +186,24 @@ public class StockManager
             System.out.println("***RENAMED***");
             System.out.println(product);
         }
-        
     }
+    
+    /**
+     * If the product exists that matches the id
+     * remove that product from the list.
+     */
+    public void sellProduct(int id, int amount)
+    {
+        Product product = findProduct(id);
+        
+        if(product == null)
+        {
+            System.out.println("\n Product ID " + id + " NOT FOUND!\n");
+        }
+        else
+        {
+            product.sell(amount);
+            System.out.println("\n Product ID " + id + " sold!\n");            
+        }
+    }    
 }
