@@ -41,14 +41,14 @@ public class StockManager
         
         if(product == null)
         {
-            System.out.println("\n Product ID" + id + " not found! \n"); 
+            System.out.println("\n    Product ID" + id + " not found! \n"); 
         }
         else
         {
-            System.out.println(product);
+            System.out.println("    " + product);
             product.increaseQuantity(amount);
-            System.out.println("Re-stocking by " + amount);
-            System.out.println(product);
+            System.out.println("    Re-stocking by " + amount);
+            System.out.println();
         }
     }
     
@@ -79,11 +79,13 @@ public class StockManager
     public void searchProducts(String targetPhrase)
     {
         int count = 0;
+        targetPhrase.toLowerCase();
+        
         System.out.println("\nSearching for " + targetPhrase + "\n");
         
         for(Product product : stock)
         {
-            if(product.getName().contains(targetPhrase))
+            if(product.getName().toLowerCase().contains(targetPhrase))
             {
                 System.out.println(product);
                 count++;
@@ -101,7 +103,7 @@ public class StockManager
     {
         for(Product product : stock)
         {
-            System.out.println(product);
+            System.out.println("    " + product);
         }
         
         System.out.println();

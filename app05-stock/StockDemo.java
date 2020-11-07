@@ -13,8 +13,8 @@ import java.util.Random;
  */
 public class StockDemo
 {
-    public static final int FIRST_ID = 100;
-    public static final int LAST_ID = 109;
+    public static final int FIRST_ID = 200;
+    public static final int LAST_ID = 209;
     
     // The stock manager.
     private StockManager manager;
@@ -30,16 +30,13 @@ public class StockDemo
         randomGenerator = new Random();
         this.manager = manager;
         
+        addTestData();
+        demoDeliverProducts();
+    }
+    
+    public void addTestData()
+    {
         int id = FIRST_ID;
-        manager.addProduct(new Product(id,"Apple iPhone 11"));
-        
-        id++;
-        manager.addProduct(new Product(id,"Samsung Galaxy S10"));
-        
-        id++; 
-        manager.addProduct(new Product(id,"Samsung Galaxy S20"));
-        
-        id++; 
         manager.addProduct(new Product(id,"Gogle Pixel 4A"));
         
         id++; 
@@ -56,9 +53,6 @@ public class StockDemo
         
         id++; 
         manager.addProduct(new Product(id,"Sony Xperia 5"));
-        
-        id++; 
-        manager.addProduct(new Product(id,"Apple iPhone 12"));
     }
     
     public void runDemo()
