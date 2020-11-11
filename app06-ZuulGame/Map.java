@@ -7,18 +7,24 @@
  */
 public class Map
 {
+    private Room start;
+    
+    private String description;
+    
     /**
      * Constructor for objects of class Map
      */
     public Map()
     {
+        createStart();
+        createBuilding();
     }
     
     /**
      * Create all the rooms and link their exits together.
      * and return the current room for the player to start
      */
-    public Room createRooms()
+    public Room createTestRooms()
     {
         Room outside, theater, pub, lab, office;
       
@@ -46,28 +52,37 @@ public class Map
         return outside;  // start game outside
     }
     
-    public Room create()
+    public Room getStartRoom()
     {
-        Room outside = new Room("outside Brick Building");
+        return start;
+    }
+    
+    private void createStart()
+    {
+        start = new Room("outside Brick Building");
 
-        String description;
-        description = "standing at the end of a road before a small\n";
+        description =  "standing at the end of a road before a small\n";
         description += "brick building. Around you is a forest.  A small\n";
         description += "stream flows out of the building and down a gully\n.";
         
-        outside.setDescription(description);
-        
-        Room building = new Room("inside Brick Building");
-        
-        description = "in a well house for a large spring.  There are some\n";
-        description += "keys on the ground here.";
-        
-        building.setDescription(description);
-        outside.setExit("north", building);
-        building.setExit("south", outside);
-        
-        return outside;
+        start.setDescription(description);
     }
     
+    /**
+     * The building is North of the Start and contains
+     * important items that need to be picked up
+     */
+    private void createBuilding()
+    {
+        Room building = new Room("inside Brick Building");
+        
+        description =  "in a well house for a large spring. ";
+        description += "There are some keys on the ground here.";
+        
+        building.setDescription(description);
+        
+        start.setExit("north", building);
+        building.setExit("south", start);
+    }
 
 }
