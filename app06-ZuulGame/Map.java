@@ -18,6 +18,8 @@ public class Map
     {
         createStart();
         createBuilding();
+        createEastForest();
+        createWestForest();
     }
     
     /**
@@ -29,11 +31,11 @@ public class Map
         Room outside, theater, pub, lab, office;
       
         // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        outside = new Room(" outside the main entrance of the university");
+        theater = new Room(" in a lecture theater");
+        pub = new Room(" in the campus pub");
+        lab = new Room(" in a computing lab");
+        office = new Room(" in the computing admin office");
         
         // initialise room exits
         outside.setExit("east", theater);
@@ -61,9 +63,9 @@ public class Map
     {
         start = new Room("outside Brick Building");
 
-        description =  "standing at the end of a road before a small\n";
-        description += "brick building. Around you is a forest.  A small\n";
-        description += "stream flows out of the building and down a gully\n.";
+        description =  " standing at the end of a road before a small\n";
+        description += " brick building. Around you is a forest.  A small\n";
+        description += " stream flows out of the building and down a gully\n.";
         
         start.setDescription(description);
     }
@@ -76,8 +78,8 @@ public class Map
     {
         Room building = new Room("inside Brick Building");
         
-        description =  "in a well house for a large spring. ";
-        description += "There are some keys on the ground here.";
+        description =  " in a well house for a large spring. ";
+        description += "\nThere are some keys on the ground here.";
         
         building.setDescription(description);
         
@@ -85,4 +87,29 @@ public class Map
         building.setExit("south", start);
     }
 
+    private void createEastForest()
+    {
+        Room eastForest = new Room("lost in thick Forest");
+        
+        description =  " up a hill, still in the forest.  \nThe road";
+        description += " slopes back down the other side of the hill.";
+        description += " \nThere is a building in the distance";
+        
+        eastForest.setDescription(description);        
+        
+        eastForest.setExit("west", start);
+        start.setExit("east", eastForest);
+    }
+    
+    private void createWestForest()
+    {
+        Room westForest = new Room("lost in thick Forest");
+        
+        description =  " in open forest, with a deep valley to one side";
+        
+        westForest.setDescription(description);        
+        
+        westForest.setExit("east", start);
+        start.setExit("west", westForest);
+    }
 }

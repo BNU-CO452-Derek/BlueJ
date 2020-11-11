@@ -66,9 +66,9 @@ public class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly exiting adventure game.");
-        System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
+        System.out.println(" Welcome to the World of Zuul!");
+        System.out.println(" World of Zuul is a new, incredibly exiting adventure game.");
+        System.out.println(" Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
@@ -87,7 +87,7 @@ public class Game
         switch (commandWord) 
         {
             case UNKNOWN:
-                System.out.println("I don't know what you mean...");
+                System.out.println(" I don't know what you mean...");
                 break;
 
             case HELP:
@@ -118,9 +118,9 @@ public class Game
      */
     private void printHelp() 
     {
-        System.out.println("You are currently " + currentRoom.getShortDescription());
+        System.out.println(" You are currently " + currentRoom.getShortDescription());
         System.out.println();
-        System.out.println("Your command words are:");
+        System.out.println(" Your command words are:");
         parser.showCommands();
     }
 
@@ -133,7 +133,7 @@ public class Game
         if(!command.hasSecondWord()) 
         {
             // if there is no second word, we don't know where to go...
-            System.out.println("Go where?");
+            System.out.println(" Go where?");
             return;
         }
 
@@ -144,7 +144,7 @@ public class Game
 
         if (nextRoom == null) 
         {
-            System.out.println("There is no exit!");
+            System.out.println(" There is no exit!");
         }
         else 
         {
