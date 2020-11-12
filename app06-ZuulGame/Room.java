@@ -24,7 +24,7 @@ public class Room
     
     private HashMap<String, Room> exits;        // stores exits of this room.
     
-    private Item item;
+    private ItemTypes item;
 
     /**
      * Create a room named "name". Initially, it has
@@ -113,6 +113,16 @@ public class Room
     public String getDescription()
     {
         return description;
+    }
+    
+    public void setItem(ItemTypes item)
+    {
+        this.item = item;
+    }
+    
+    public ItemTypes getItem()
+    {
+        return item;
     }
 }
 

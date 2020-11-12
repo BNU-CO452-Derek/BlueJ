@@ -7,5 +7,5 @@
  */
 public enum ItemTypes
 {
-    KEY, FOOD, LIGHT, WEAPON
+    KEY, BOTTLE, WATER, FOOD, LIGHT, WEAPON
 }

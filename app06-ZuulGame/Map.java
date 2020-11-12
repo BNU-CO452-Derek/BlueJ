@@ -78,8 +78,10 @@ public class Map
         description =  " standing at the end of a road before a small\n";
         description += " brick building. Around you is a forest.  A small\n";
         description += " stream flows out of the building and down a gully\n.";
+        description += " There is an empty bottle on the ground.";
         
         start.setDescription(description);
+        start.setItem(ItemTypes.BOTTLE);
     }
     
     /**
@@ -94,7 +96,7 @@ public class Map
         description += "\nThere are some keys on the ground here.";
         
         building.setDescription(description);
-        
+        building.setItem(ItemTypes.KEY);
         connectRooms(start, "north", building);
     }
 

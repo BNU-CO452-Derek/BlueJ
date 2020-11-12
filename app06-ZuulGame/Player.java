@@ -14,7 +14,6 @@ public class Player
 {
     public static final int MAX_ENERGY = 100;
     public static final int MIN_ENERGY = 10;
-    public static final int MAX_WEIGHT = 100;
     
     private String name;
     
@@ -26,7 +25,7 @@ public class Player
     
     private boolean alive;
     
-    private ArrayList<Item> items;
+    private ArrayList<ItemTypes> items;
     
     /**
      * Constructor for objects of class Player
@@ -34,7 +33,7 @@ public class Player
     public Player(String name)
     {
         this.name = name;
-        items = new ArrayList<Item>();
+        items = new ArrayList<ItemTypes>();
         
         energy = MAX_ENERGY;
         alive = true;
@@ -98,17 +97,17 @@ public class Player
         this.alive = true;
     }//end method setAlive
 
-    public ArrayList<Item> getItems()
+    public ArrayList<ItemTypes> getItems()
     {
         return this.items;
     }//end method getItems
 
-    public void addItem(Item item)
+    public void addItem(ItemTypes item)
     {
         this.items.add(item);
     }//end method setItems
 
-    public void removeItem(Item item)
+    public void removeItem(ItemTypes item)
     {
         this.items.remove(item);
     }//end method setItems    
