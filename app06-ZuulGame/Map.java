@@ -40,11 +40,11 @@ public class Map
         Room outside, theater, pub, lab, office;
       
         // create the rooms
-        outside = new Room(" outside the main entrance of the university");
-        theater = new Room(" in a lecture theater");
-        pub = new Room(" in the campus pub");
-        lab = new Room(" in a computing lab");
-        office = new Room(" in the computing admin office");
+        outside = new Room(1, " outside the main entrance of the university");
+        theater = new Room(2, " in a lecture theater");
+        pub = new Room(3, " in the campus pub");
+        lab = new Room(4, " in a computing lab");
+        office = new Room(5, " in the computing admin office");
         
         // initialise room exits
         outside.setExit("east", theater);
@@ -73,11 +73,12 @@ public class Map
      */
     private void createStart()
     {
-        start = new Room(" outside Brick Building");
+        start = new Room(0, " outside Brick Building");
 
         description =  " standing at the end of a road before a small\n";
-        description += " brick building. Around you is a forest.  A small\n";
-        description += " stream flows out of the building and down a gully\n.";
+        description += " brick building. Around you is a forest.\n";
+        description += " A small stream flows out of the building\n";
+        description += " and down a gully. \n";
         description += " There is an empty bottle on the ground.";
         
         start.setDescription(description);
@@ -90,7 +91,7 @@ public class Map
      */
     private void createBuilding()
     {
-        building = new Room("inside Brick Building");
+        building = new Room(2, "inside Brick Building");
         
         description =  " in a well house for a large spring. ";
         description += "\nThere are some keys on the ground here.";
@@ -102,7 +103,7 @@ public class Map
 
     private void createEastForest()
     {
-        eastForest = new Room("lost in thick Forest");
+        eastForest = new Room(3, "lost in thick Forest");
         
         description =  " up a hill, still in the forest.  \nThe road";
         description += " slopes back down the other side of the hill.";
@@ -117,7 +118,7 @@ public class Map
     
     private void createWestForest()
     {
-        westForest = new Room("lost in open Forest");
+        westForest = new Room(4, "lost in open Forest");
         
         description =  " in open forest, with a deep valley to one side";
         westForest.setDescription(description);        
@@ -130,7 +131,7 @@ public class Map
      */
     private void createValley()
     {
-        valley = new Room("in a valley");
+        valley = new Room(5, "in a valley");
         
         description = " in a valley in the forest beside a stream";
         description += "\n tumbling along a rocky bed.";
@@ -139,16 +140,16 @@ public class Map
         
         connectRooms(start, "south", valley);
         
-        Room forest = cloneRoom(eastForest);
+        Room forest = cloneRoom(6, eastForest);
         connectRooms(valley, "east", forest);
         
-        forest = cloneRoom(westForest);
+        forest = cloneRoom(7, westForest);
         connectRooms(valley, "west", forest);        
     }
 
     private void createSlit()
     {
-        slit = new Room("at slit in streambed");
+        slit = new Room(8, "at slit in streambed");
         
         description = "standing, at your feet all the water of the stream";
         description += " \n splashes into a 2-inch slit in the rock.  ";
@@ -160,7 +161,7 @@ public class Map
     
     private void createGrate()
     {
-        grate = new Room("beside a grate");
+        grate = new Room(9, "beside a grate");
         
         description = " You are in a 20-foot depression floored ";
         description += " \n with bare dirt.  Set into the dirt ";
@@ -192,9 +193,9 @@ public class Map
         }        
     }
     
-    private Room cloneRoom(Room toClone)
+    private Room cloneRoom(int id, Room toClone)
     {
-        Room room = new Room(toClone.getName());
+        Room room = new Room(id, toClone.getName());
         room.setDescription(toClone.getDescription());
 
         return room;

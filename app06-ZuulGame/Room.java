@@ -18,6 +18,8 @@ import java.util.Iterator;
 
 public class Room 
 {
+    private int id;
+    
     private String name;
     
     private String description;
@@ -32,10 +34,12 @@ public class Room
      * "Court Yard".
      * @param name The room's name.
      */
-    public Room(String name) 
+    public Room(int id, String name) 
     {
         this.name = name;
         this.description = name;
+        this.id = id;
+        
         exits = new HashMap<>();
         item = ItemTypes.NONE;
     }

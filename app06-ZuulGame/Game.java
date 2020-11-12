@@ -24,7 +24,7 @@ public class Game
     public static final int MOVE_ENERGY = 10;
     public static final int COMMAND_ENERGY = 1;
     
-    public static final char CLEAR_SCREEN ='\u003C';
+    public static final char CLEAR_SCREEN ='\u000C';
     
     private Parser parser;
     private Room currentRoom;
