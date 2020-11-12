@@ -20,6 +20,12 @@
 
 public class Game 
 {
+    public static final int TAKE_SCORE = 10;
+    public static final int MOVE_ENERGY = 10;
+    public static final int COMMAND_ENERGY = 1;
+    
+    public static final char CLEAR_SCREEN ='\u003C';
+    
     private Parser parser;
     private Room currentRoom;
     private Player player;
@@ -65,11 +71,12 @@ public class Game
      */
     private void printWelcome()
     {
-        System.out.println();
+        System.out.println(CLEAR_SCREEN);
         System.out.println(" Welcome to the World of Zuul!");
         System.out.println(" World of Zuul is a new, incredibly exiting adventure game.");
         System.out.println(" Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
+        System.out.println(player);
         System.out.println(currentRoom.getLongDescription());
     }
 
@@ -81,7 +88,8 @@ public class Game
     private boolean processCommand(Command command) 
     {
         boolean wantToQuit = false;
-
+        player.decEnergy(COMMAND_ENERGY);
+        
         CommandWord commandWord = command.getCommandWord();
 
         switch (commandWord) 
@@ -100,6 +108,10 @@ public class Game
 
             case LOOK:
                 System.out.println(currentRoom.getLongDescription());
+                break;
+
+            case TAKE:
+                takeItem(command);
                 break;
                 
             case QUIT:
@@ -149,12 +161,29 @@ public class Game
         else 
         {
             currentRoom = nextRoom;
+            
+            player.decEnergy(MOVE_ENERGY);
+            player.incTurns();
+            
+            System.out.println(player);
             System.out.println(currentRoom.getShortDescription());
         }
     }
 
-    public void lookAround(Command command)
+    public void takeItem(Command command)
     {
+        ItemTypes item = currentRoom.getItem();
+        
+        if(item == ItemTypes.NONE)
+        {
+            System.out.println("\n There is nothing here to take!");
+        }
+        else
+        {
+            player.addItem(item);
+            player.incScore(10);
+            System.out.println("\n You have taken the " + item);
+        }
     }
     
     /** 

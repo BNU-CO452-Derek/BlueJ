@@ -57,11 +57,16 @@ public class Player
         return this.score;
     }//end method getScore
 
-    public void setScore(int score)
+    public void incScore(int amount)
     {
-        this.score = score;
+        score = score + amount;
     }//end method setScore
 
+    public void decScore(int amount)
+    {
+        score = score - amount;
+    }//end method setScore
+    
     public int getTurns()
     {
         return this.turns;
@@ -70,6 +75,7 @@ public class Player
     public void incTurns()
     {
         this.turns++;
+        this.energy--;
     }//end method setTurns
 
     public int getEnergy()
@@ -85,6 +91,8 @@ public class Player
     public void decEnergy(int decrease)
     {
         this.energy -= decrease;
+        if(energy < MIN_ENERGY)
+            alive = false;
     }//end method setEnergy
     
     public boolean getAlive()
@@ -111,6 +119,12 @@ public class Player
     {
         this.items.remove(item);
     }//end method setItems    
-    //End GetterSetterExtension Source Code
-//!
+
+    public String toString()
+    {
+        String output = "\n " + name + ": Turn " + turns + " Energy = " + energy;
+        output += " Score = " + score;
+        
+        return output;
+    }
 }
