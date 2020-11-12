@@ -67,7 +67,8 @@ public class Room
      */
     public String getLongDescription()
     {
-        return " You are " + name + "\n\nYou are " + description + ".\n" + getExitString();
+        return " You are " + name + "\n\n You are " + 
+               description + ".\n" + getExitString();
     }
 
     /**
@@ -99,9 +100,19 @@ public class Room
         return exits.get(direction);
     }
     
+    public String getName()
+    {
+        return name;
+    }
+    
     public void setDescription(String description)
     {
         this.description = description;
+    }
+    
+    public String getDescription()
+    {
+        return description;
     }
 }
 
