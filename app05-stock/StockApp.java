@@ -230,6 +230,9 @@ public class StockApp
      */
     private void printHeading()
     {
+        System.out.print(ConsoleColours.ANSI_BRIGHT_GREEN + 
+                         ConsoleColours.ANSI_BRIGHT_BG_YELLOW + "  Colours  ");
+                           
         System.out.println("    ******************************");
         System.out.println("     Stock Management Application ");
         System.out.println("       App05: by Derek Peacock");

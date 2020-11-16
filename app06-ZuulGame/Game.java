@@ -114,6 +114,10 @@ public class Game
                 takeItem(command);
                 break;
                 
+            case FILL:
+                fill(command);
+                break;
+                
             case QUIT:
                 wantToQuit = quit(command);
                 break;
@@ -180,9 +184,38 @@ public class Game
         }
         else
         {
-            player.addItem(item);
-            player.incScore(10);
-            System.out.println("\n You have taken the " + item);
+            String object = command.getSecondWord();
+            if(object != null)
+            {
+                String stringItem = item.toString();
+                stringItem = stringItem.toLowerCase();
+                
+                if(object.equals(stringItem))
+                {
+                    player.addItem(item);
+                    player.incScore(10);
+                    System.out.println("\n You have taken the " + item);
+                }
+                else
+                {
+                    System.out.println("\n I can't take " + object);
+                }
+            }
+        }
+    }
+    
+    private void fill(Command command)
+    {
+        if(currentRoom.getID() == 0)
+        {
+            String object = command.getSecondWord();
+            if(object.equals("bottle"))
+            {
+            }
+        }
+        else
+        {
+            
         }
     }
     

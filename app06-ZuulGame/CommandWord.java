@@ -13,7 +13,7 @@ public enum CommandWord
     GO("go"), QUIT("quit"), HELP("help"), 
     TAKE("take"), UNLOCK("unlock"), EAT("eat"), 
     LOOK("look"), FILL("fill"), DRINK("drink"),
-    UNKNOWN("?");
+    INVENTORY("inventory"), UNKNOWN("?");
     
     // The command string.
     private String commandString;
@@ -26,12 +26,13 @@ public enum CommandWord
     {
         this.commandString = commandString;
     }
+
     
     /**
      * @return The command word as a string.
      */
     public String toString()
     {
-        return commandString;
+        return commandString.toLowerCase();
     }
 }

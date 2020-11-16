@@ -122,8 +122,11 @@ public class Player
 
     public String toString()
     {
-        String output = "\n " + name + ": Turn " + turns + " Energy = " + energy;
-        output += " Score = " + score;
+        String 
+        output = "\n ----------------------------------------------" +
+                 "\n | " + name + ": | Turn " + turns + " | Energy = " + energy +
+                 " | Score = " + score + " |" +
+                 "\n ----------------------------------------------\n";
         
         return output;
     }

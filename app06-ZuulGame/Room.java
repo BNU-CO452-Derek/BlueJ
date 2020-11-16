@@ -44,6 +44,11 @@ public class Room
         item = ItemTypes.NONE;
     }
 
+    public int getID()
+    {
+        return id;
+    }
+    
     /**
      * Define an exit from this room.
      * @param direction The direction of the exit.
@@ -82,7 +87,7 @@ public class Room
      */
     private String getExitString()
     {
-        String returnString = " Exits:";
+        String returnString = "\n Exits:";
         Set<String> keys = exits.keySet();
         
         for(String exit : keys) 

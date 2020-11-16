@@ -31,38 +31,6 @@ public class Map
         createGrate();
     }
     
-    /**
-     * Create all the rooms and link their exits together.
-     * and return the current room for the player to start
-     */
-    public Room createTestRooms()
-    {
-        Room outside, theater, pub, lab, office;
-      
-        // create the rooms
-        outside = new Room(1, " outside the main entrance of the university");
-        theater = new Room(2, " in a lecture theater");
-        pub = new Room(3, " in the campus pub");
-        lab = new Room(4, " in a computing lab");
-        office = new Room(5, " in the computing admin office");
-        
-        // initialise room exits
-        outside.setExit("east", theater);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
-
-        theater.setExit("west", outside);
-
-        pub.setExit("east", outside);
-
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
-
-        office.setExit("west", lab);
-
-        return outside;  // start game outside
-    }
-    
     public Room getStartRoom()
     {
         return start;
@@ -75,11 +43,11 @@ public class Map
     {
         start = new Room(0, " outside Brick Building");
 
-        description =  " standing at the end of a road before a small\n";
-        description += " brick building. Around you is a forest.\n";
-        description += " A small stream flows out of the building\n";
-        description += " and down a gully. \n";
-        description += " There is an empty bottle on the ground.";
+        description =  
+        " standing at the end of a road before a brick \n" +
+        " building. Around you is a forest. A small stream\n" +
+        " flows out of the building and down a gully. There is\n" +
+        " an empty bottle on the ground";
         
         start.setDescription(description);
         start.setItem(ItemTypes.BOTTLE);
@@ -199,5 +167,37 @@ public class Map
         room.setDescription(toClone.getDescription());
 
         return room;
+    }
+    
+    /**
+     * Create all the rooms and link their exits together.
+     * and return the current room for the player to start
+     */
+    public Room createTestRooms()
+    {
+        Room outside, theater, pub, lab, office;
+      
+        // create the rooms
+        outside = new Room(1, " outside the main entrance of the university");
+        theater = new Room(2, " in a lecture theater");
+        pub = new Room(3, " in the campus pub");
+        lab = new Room(4, " in a computing lab");
+        office = new Room(5, " in the computing admin office");
+        
+        // initialise room exits
+        outside.setExit("east", theater);
+        outside.setExit("south", lab);
+        outside.setExit("west", pub);
+
+        theater.setExit("west", outside);
+
+        pub.setExit("east", outside);
+
+        lab.setExit("north", outside);
+        lab.setExit("east", office);
+
+        office.setExit("west", lab);
+
+        return outside;  // start game outside
     }
 }
