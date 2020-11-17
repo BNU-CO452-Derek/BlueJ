@@ -46,11 +46,10 @@ public class Map
         description =  
         " standing at the end of a road before a brick \n" +
         " building. Around you is a forest. A small stream\n" +
-        " flows out of the building and down a gully. There is\n" +
-        " an empty bottle on the ground";
+        " flows out of the building and down a gully.";
         
         start.setDescription(description);
-        start.setItem(ItemTypes.BOTTLE);
+        start.setItem(ItemTypes.BOTTLE, "\n There is an empty bottle on the ground");
     }
     
     /**
@@ -62,10 +61,9 @@ public class Map
         building = new Room(2, "inside Brick Building");
         
         description =  " in a well house for a large spring. ";
-        description += "\nThere are some keys on the ground here.";
         
         building.setDescription(description);
-        building.setItem(ItemTypes.KEY);
+        building.setItem(ItemTypes.KEY, "\n There are some keys on the ground here.");
         connectRooms(start, "north", building);
     }
 
@@ -73,9 +71,9 @@ public class Map
     {
         eastForest = new Room(3, "lost in thick Forest");
         
-        description =  " up a hill, still in the forest.  \nThe road";
+        description =  " up a hill, still in the forest.  \n The road";
         description += " slopes back down the other side of the hill.";
-        description += " \nThere is a building in the distance";
+        description += " \n There is a building in the distance";
         
         eastForest.setDescription(description);        
         
@@ -103,9 +101,11 @@ public class Map
         
         description = " in a valley in the forest beside a stream";
         description += "\n tumbling along a rocky bed.";
-        
         valley.setDescription(description);
         
+        valley.setItem(ItemTypes.APPLES,
+            "\n There are a couple of apple trees with fruit");
+            
         connectRooms(start, "south", valley);
         
         Room forest = cloneRoom(6, eastForest);
