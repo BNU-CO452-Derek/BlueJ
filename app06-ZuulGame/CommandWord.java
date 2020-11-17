@@ -24,7 +24,7 @@ public enum CommandWord
      */
     CommandWord(String commandString)
     {
-        this.commandString = commandString;
+        this.commandString = commandString.toLowerCase();
     }
 
     
