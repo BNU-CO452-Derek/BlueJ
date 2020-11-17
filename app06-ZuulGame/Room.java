@@ -24,10 +24,12 @@ public class Room
     
     private String description;
     
-    private HashMap<String, Room> exits;        // stores exits of this room.
+    private HashMap<String, Room> exits;        
     
     private ItemTypes item;
-
+    
+    private String itemDescription;
+    
     /**
      * Create a room named "name". Initially, it has
      * no exits. "name" is something like "kitchen" or
@@ -65,7 +67,7 @@ public class Room
      */
     public String getShortDescription()
     {
-        return "You are  " + name;
+        return " You are  " + name;
     }
 
     /**
@@ -76,8 +78,13 @@ public class Room
      */
     public String getLongDescription()
     {
-        return " You are " + name + "\n\n You are " + 
-               description + ".\n" + getExitString();
+        String message =  " You are " + name + "\n\n You are " + 
+               description + ".\n";
+        
+        if(item != ItemTypes.NONE)
+            message += itemDescription + "\n";
+            
+        return message + getExitString();
     }
 
     /**
@@ -121,17 +128,26 @@ public class Room
     
     public String getDescription()
     {
-        return description;
+        if(item == ItemTypes.NONE)
+            return description;
+        else
+            return description + " " + itemDescription;
     }
     
-    public void setItem(ItemTypes item)
+    public void setItem(ItemTypes item, String itemDescription)
     {
         this.item = item;
+        this.itemDescription = itemDescription;
     }
     
     public ItemTypes getItem()
     {
         return item;
+    }
+    
+    public void removeItem()
+    {
+        item = ItemTypes.NONE;
     }
 }
 
