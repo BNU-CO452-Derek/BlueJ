@@ -7,5 +7,18 @@
  */
 public enum ItemTypes
 {
-    NONE, KEY, BOTTLE, WATER, FOOD, LIGHT, WEAPON
+    NONE("none"), KEY("keys"), BOTTLE("bottle"), WATER("water"), 
+    APPLES("apples"), LIGHT("light"), WEAPON("weapon");
+    
+    private String itemString;
+    
+    ItemTypes(String itemString)
+    {
+        this.itemString = itemString;
+    }
+    
+    public String toString()
+    {
+        return itemString;
+    }
 }
