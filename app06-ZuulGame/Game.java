@@ -22,7 +22,8 @@ public class Game
 {
     public static final int TAKE_SCORE = 10;
     public static final int MOVE_ENERGY = 10;
-    public static final int COMMAND_ENERGY = 1;
+    public static final int WATER_ENERGY = 10;
+    public static final int COMMAND_ENERGY = 2;
     
     public static final char CLEAR_SCREEN ='\u000C';
     
@@ -61,9 +62,15 @@ public class Game
         {
             Command command = parser.getCommand();
             finished = processCommand(command);
+            
+            if(!player.isAlive())
+            {
+                System.out.println(" \nYou have died of lack of water or food!\n");
+                finished = true;
+            }
         }
         
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println(" Thank you for playing.  Good bye.");
     }
 
     /**
@@ -76,6 +83,7 @@ public class Game
         System.out.println(" World of Zuul is a new, incredibly exiting adventure game.");
         System.out.println(" Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
+        
         System.out.println(player);
         System.out.println(currentRoom.getLongDescription());
     }
@@ -134,9 +142,11 @@ public class Game
      */
     private void printHelp() 
     {
+        System.out.println(player);
         System.out.println(" You are currently " + currentRoom.getShortDescription());
         System.out.println();
         System.out.println(" Your command words are:");
+        
         parser.showCommands();
     }
 
@@ -167,7 +177,7 @@ public class Game
             currentRoom = nextRoom;
             
             player.decEnergy(MOVE_ENERGY);
-            player.incTurns();
+            player.incMoves();
             
             System.out.println(player);
             System.out.println(currentRoom.getShortDescription());
@@ -188,17 +198,21 @@ public class Game
             if(object != null)
             {
                 String stringItem = item.toString();
-                stringItem = stringItem.toLowerCase();
                 
                 if(object.equals(stringItem))
                 {
+                    currentRoom.removeItem();
+
                     player.addItem(item);
-                    player.incScore(10);
+                    player.incScore(TAKE_SCORE);
+                    
                     System.out.println("\n You have taken the " + item);
+                    System.out.println(player);
+                    System.out.println(currentRoom.getShortDescription());                    
                 }
                 else
                 {
-                    System.out.println("\n I can't take " + object);
+                    System.out.println("\n You can't take the " + object);
                 }
             }
         }
@@ -209,13 +223,24 @@ public class Game
         if(currentRoom.getID() == 0)
         {
             String object = command.getSecondWord();
-            if(object.equals("bottle"))
+            
+            if(object.equals(ItemTypes.BOTTLE.toString()))
             {
+                player.addItem(ItemTypes.WATER);
+                player.incEnergy(WATER_ENERGY);
+                player.incScore(TAKE_SCORE);
+                
+                System.out.println(player);
+                System.out.println(currentRoom.getShortDescription());                
+            }
+            else
+            {
+                System.out.println(" You do not have a bottle!");
             }
         }
         else
         {
-            
+            System.out.println(" There is no water here!");
         }
     }
     
