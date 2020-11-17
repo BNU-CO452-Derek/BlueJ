@@ -14,19 +14,29 @@ public class Player
 {
     public static final int MAX_ENERGY = 100;
     public static final int MIN_ENERGY = 10;
+
+    public static final int MAX_FOOD = 100;
+    public static final int MIN_FOOD = 10;
+    
+    public static final int MAX_WATER = 100;
+    public static final int MIN_WATER = 10;    
     
     private String name;
-    
+
     private int score;
-    
-    private int turns;
-    
+
+    private int moves;
+
     private int energy;
+
+    private int water;
+    
+    private int food;
     
     private boolean alive;
-    
+
     private ArrayList<ItemTypes> items;
-    
+
     /**
      * Constructor for objects of class Player
      */
@@ -34,12 +44,12 @@ public class Player
     {
         this.name = name;
         items = new ArrayList<ItemTypes>();
-        
+
         energy = MAX_ENERGY;
         alive = true;
-        
+
         score = 0;
-        turns = 0;
+        moves = 0;
     }
 
     public String getName()
@@ -65,16 +75,17 @@ public class Player
     public void decScore(int amount)
     {
         score = score - amount;
+        if(score < 0)score = 0;
     }//end method setScore
-    
-    public int getTurns()
+
+    public int getMoves()
     {
-        return this.turns;
+        return this.moves;
     }//end method getTurns
 
-    public void incTurns()
+    public void incMoves()
     {
-        this.turns++;
+        this.moves++;
         this.energy--;
     }//end method setTurns
 
@@ -86,6 +97,7 @@ public class Player
     public void incEnergy(int increase)
     {
         this.energy += increase;
+        if(energy > MAX_ENERGY)energy = MAX_ENERGY;
     }//end method setEnergy
 
     public void decEnergy(int decrease)
@@ -94,8 +106,8 @@ public class Player
         if(energy < MIN_ENERGY)
             alive = false;
     }//end method setEnergy
-    
-    public boolean getAlive()
+
+    public boolean isAlive()
     {
         return this.alive;
     }//end method getAlive
@@ -124,10 +136,38 @@ public class Player
     {
         String 
         output = "\n ----------------------------------------------" +
-                 "\n | " + name + ": | Turn " + turns + " | Energy = " + energy +
-                 " | Score = " + score + " |" +
-                 "\n ----------------------------------------------\n";
-        
+            "\n | " + name + ": | Move " + moves + " | Energy = " + energy +
+            " | Score = " + score + " |" +
+            "\n ----------------------------------------------\n";
+
+        output += showItems();
         return output;
+    }
+
+    private String showItems()
+    {
+        String inventory = "\n You are carrying: ";
+        int count = 0;
+        
+        if(items.size() == 0)
+            inventory += "nothing!";
+        else
+        {
+            for(ItemTypes item : items)
+            {
+                count++;
+                inventory += item;
+
+                if(count < items.size())
+                {
+                    inventory += ", ";
+                }
+                else
+                {
+                    inventory += "\n";
+                }
+            }
+        }
+        return inventory;
     }
 }
