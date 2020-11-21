@@ -9,10 +9,21 @@
  */
 public class StockApp
 {
+    public static final String ADD = "Add Product";
+    public static final String DELIVER = "Deliver Product";
+    public static final String SELL = "Sell Product";
+    public static final String SEARCH = "Search for Product";
+    public static final String REMOVE = "Remove Product";
+    public static final String PRINT_LOW_STOCK = "Print Low Stock";
+    public static final String PRINT_ALL = "Print All Products";
+    public static final String QUIT = "Quit";
+    
     // instance variables - replace the example below with your own
     private StockManager manager;
 
     private InputReader reader;
+    
+    private String[] menuChoices;
     
     /**
      * Constructor for objects of class StockApp
@@ -23,6 +34,11 @@ public class StockApp
         StockDemo demo = new StockDemo(manager);
         
         reader = new InputReader();
+        menuChoices = new String[] 
+        { 
+            ADD, DELIVER, SELL,
+            SEARCH, REMOVE, PRINT_LOW_STOCK,
+            PRINT_ALL, QUIT};
     }
 
     
@@ -33,20 +49,10 @@ public class StockApp
         while(!finished)
         {
             printHeading();
-            printMenuChoices();
+            //printMenuChoices();
+            int choice = Menu.getChoice(menuChoices);
             
-            String prompt = "\n    Enter your choice > ";
-            String choice = reader.getInput(prompt).toLowerCase();
-            System.out.println();
-            
-            if(choice.startsWith("quit"))
-            {
-                finished = true;
-            }
-            else
-            {
-                executeMenuChoice(choice);
-            }
+            finished = executeMenuChoice(choice);
         }
     }
     
@@ -54,36 +60,24 @@ public class StockApp
      * Call on methods of the StockManager to
      * execute the selected menu choice
      */
-    private void executeMenuChoice(String choice)
+    private boolean executeMenuChoice(int choice)
     {
-        if(choice.startsWith("add"))
+        
+        switch(choice)
         {
-            addProduct();
+            case 1: addProduct(); break;
+            case 2: deliverProduct(); break;
+            case 3: sellProduct(); break;
+            case 4: searchProducts(); break;
+            case 5: removeProduct(); break;
+            case 6: printLowStock(); break;
+            case 7: manager.printAllProducts(); break;
+            case 8: return true;
+            default: System.out.println(
+                "    Please enter a choice between 1 and " + menuChoices.length);
         }
-        else if(choice.startsWith("deliver"))
-        {
-            deliverProduct();
-        }        
-        else if(choice.startsWith("low"))
-        {
-            printLowStock();
-        } 
-        else if(choice.startsWith("remove"))
-        {
-            removeProduct();
-        }         
-        else if(choice.startsWith("sell"))
-        {
-            sellProduct();
-        } 
-        else if(choice.startsWith("search"))
-        {
-            searchProducts();
-        }         
-        else if(choice.startsWith("print"))
-        {
-            manager.printAllProducts();
-        }
+        
+        return false;
     }
     
     private void addProduct()
@@ -94,7 +88,7 @@ public class StockApp
         int id = reader.getInt(prompt);
 
         prompt = "\n Please enter the product name > ";
-        String name = reader.getInput(prompt);    
+        String name = reader.getString(prompt);    
         
         Product product = new Product(id, name);
         manager.addProduct(product);
@@ -186,7 +180,7 @@ public class StockApp
     private void searchProducts()
     {
         String prompt = "\n Please enter search term > ";
-        String target = reader.getInput(prompt);
+        String target = reader.getString(prompt);
         
         System.out.println(" Printing products matching " 
                            + target + "\n");
@@ -216,9 +210,9 @@ public class StockApp
         System.out.println();
         System.out.println("    Add:         Add a new product");
         System.out.println("    Deliver:     Deliver a product");
-        System.out.println("    Remove:      Remove an old product");
         System.out.println("    Sell  :      Sell a product");
         System.out.println("    Search:      For products by name");
+        System.out.println("    Remove:      Remove an old product");
         System.out.println("    Low Stock:   List all low stock products");
         System.out.println("    Print:       Print all products");
         System.out.println("    Quit:        Quit the program");
@@ -230,12 +224,12 @@ public class StockApp
      */
     private void printHeading()
     {
-        System.out.print(ConsoleColours.ANSI_BRIGHT_GREEN + 
-                         ConsoleColours.ANSI_BRIGHT_BG_YELLOW + "  Colours  ");
+        // System.out.print(ConsoleColours.ANSI_BRIGHT_GREEN + 
+                         // ConsoleColours.ANSI_BRIGHT_BG_YELLOW + "  Colours  ");
                            
         System.out.println("    ******************************");
         System.out.println("     Stock Management Application ");
         System.out.println("       App05: by Derek Peacock");
-        System.out.println("    ******************************");
+        System.out.println("    ******************************\n");
     }
 }

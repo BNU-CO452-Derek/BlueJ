@@ -28,7 +28,7 @@ public class InputReader
      *
      * @return  A String typed by the user.
      */
-    public String getInput(String prompt)
+    public String getString(String prompt)
     {
         System.out.println(prompt);   
         String inputLine = reader.nextLine();
@@ -46,11 +46,11 @@ public class InputReader
      */
     public int getInt(String prompt)
     {
-        System.out.println(prompt); 
-        String value = reader.nextLine();
-        //int number = reader.nextInt();
+        int number = 0;
         
-        int number = Integer.parseInt(value);
+        String value = getString(prompt);
+        number = Integer.parseInt(value);
+        
         return number;
     }    
 }

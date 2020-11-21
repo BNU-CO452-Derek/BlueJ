@@ -13,14 +13,17 @@
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
  * 
+ * 
+ * 
  * Modified and extended by Derek Peacock
+ * and Nick
  * October 26th 2020
  * Version 0.1
  */
 
 public class Game 
 {
-    public static final int TAKE_SCORE = 10;
+    public static final int TAKE_SCORE = 100;
     public static final int MOVE_ENERGY = 10;
     public static final int WATER_ENERGY = 10;
     public static final int COMMAND_ENERGY = 2;
