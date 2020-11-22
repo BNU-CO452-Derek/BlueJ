@@ -34,11 +34,13 @@ public class StockApp
         StockDemo demo = new StockDemo(manager);
         
         reader = new InputReader();
+        
         menuChoices = new String[] 
         { 
             ADD, DELIVER, SELL,
             SEARCH, REMOVE, PRINT_LOW_STOCK,
-            PRINT_ALL, QUIT};
+            PRINT_ALL, QUIT
+        };
     }
 
     
@@ -49,10 +51,12 @@ public class StockApp
         while(!finished)
         {
             printHeading();
-            //printMenuChoices();
-            int choice = Menu.getChoice(menuChoices);
+
+            int choice = Menu.getIntChoice(menuChoices);
+            //String choice = Menu.getStringChoice(menuChoices);
             
-            finished = executeMenuChoice(choice);
+            finished = executeIntChoice(choice);
+            //finished = executeStringChoice(choice);
         }
     }
     
@@ -60,7 +64,7 @@ public class StockApp
      * Call on methods of the StockManager to
      * execute the selected menu choice
      */
-    private boolean executeMenuChoice(int choice)
+    private boolean executeIntChoice(int choice)
     {
         
         switch(choice)
@@ -73,8 +77,39 @@ public class StockApp
             case 6: printLowStock(); break;
             case 7: manager.printAllProducts(); break;
             case 8: return true;
+            
             default: System.out.println(
                 "    Please enter a choice between 1 and " + menuChoices.length);
+        }
+        
+        return false;
+    }
+    
+    private boolean executeStringChoice(String choice)
+    {
+        if(choice.equals(ADD.toLowerCase()))
+        {
+            addProduct();
+        }
+        else if(choice.equals(REMOVE.toLowerCase()))
+        {
+            removeProduct();
+        }  
+        else if(choice.equals(SELL.toLowerCase()))
+        {
+            sellProduct();
+        }  
+        else if(choice.equals(DELIVER.toLowerCase()))
+        {
+            deliverProduct();
+        }          
+        else if(choice.equals(PRINT_ALL.toLowerCase()))
+        {
+            manager.printAllProducts();
+        }           
+        else if(choice.equals(QUIT.toLowerCase()))
+        {
+            return true;
         }
         
         return false;
@@ -211,9 +246,9 @@ public class StockApp
         System.out.println("    Add:         Add a new product");
         System.out.println("    Deliver:     Deliver a product");
         System.out.println("    Sell  :      Sell a product");
-        System.out.println("    Search:      For products by name");
+        System.out.println("    Search:      Search products by name");
         System.out.println("    Remove:      Remove an old product");
-        System.out.println("    Low Stock:   List all low stock products");
+        System.out.println("    Low Stock:   Print low stock products");
         System.out.println("    Print:       Print all products");
         System.out.println("    Quit:        Quit the program");
         System.out.println();
