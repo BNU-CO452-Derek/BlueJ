@@ -48,9 +48,9 @@ public class InputReader
     {
         int number = 0;
         
-        String value = getString(prompt);
-        number = Integer.parseInt(value);
-        
+        System.out.println(prompt);   
+        number = reader.nextInt();
+
         return number;
     }    
 }

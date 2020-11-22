@@ -30,17 +30,18 @@ public class StockApp
      */
     public StockApp()
     {
-        manager = new StockManager();
-        StockDemo demo = new StockDemo(manager);
-        
-        reader = new InputReader();
-        
         menuChoices = new String[] 
         { 
             ADD, DELIVER, SELL,
             SEARCH, REMOVE, PRINT_LOW_STOCK,
             PRINT_ALL, QUIT
         };
+
+        manager = new StockManager();
+        StockDemo demo = new StockDemo(manager);
+        
+        reader = new InputReader();
+        
     }
 
     
