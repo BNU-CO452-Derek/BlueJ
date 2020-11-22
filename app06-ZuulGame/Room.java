@@ -27,6 +27,7 @@ public class Room
     private HashMap<String, Room> exits;        
     
     private ItemTypes item;
+    private ItemTypes water;
     
     private String itemDescription;
     
@@ -44,6 +45,7 @@ public class Room
         
         exits = new HashMap<>();
         item = ItemTypes.NONE;
+        water = ItemTypes.NONE;
     }
 
     public int getID()
@@ -148,6 +150,16 @@ public class Room
     public void removeItem()
     {
         item = ItemTypes.NONE;
+    }
+    
+    public void setWater()
+    {
+        water = ItemTypes.WATER;
+    }
+    
+    public boolean hasWater()
+    {
+        return (water == ItemTypes.WATER);
     }
 }
 

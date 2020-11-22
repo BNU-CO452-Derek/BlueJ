@@ -24,8 +24,6 @@
 public class Game 
 {
     public static final int TAKE_SCORE = 100;
-    public static final int MOVE_ENERGY = 10;
-    public static final int WATER_ENERGY = 10;
     public static final int COMMAND_ENERGY = 2;
     
     public static final char CLEAR_SCREEN ='\u000C';
@@ -179,7 +177,6 @@ public class Game
         {
             currentRoom = nextRoom;
             
-            player.decEnergy(MOVE_ENERGY);
             player.incMoves();
             
             System.out.println(player);
@@ -190,47 +187,72 @@ public class Game
     public void takeItem(Command command)
     {
         ItemTypes item = currentRoom.getItem();
+        String object = command.getSecondWord();
+        String stringItem = item.toString();
         
-        if(item == ItemTypes.NONE)
+        boolean wantsWater = object.equals("water");
+        
+        if(object == null)
+        {
+            System.out.println("\n What do you want to take?");
+        }
+        else if((item == ItemTypes.NONE) && (!wantsWater))
         {
             System.out.println("\n There is nothing here to take!");
         }
         else
         {
-            String object = command.getSecondWord();
-            if(object != null)
+            if(object.equals(stringItem) || wantsWater)
             {
-                String stringItem = item.toString();
-                
-                if(object.equals(stringItem))
+                if(!wantsWater)
                 {
                     currentRoom.removeItem();
-
-                    player.addItem(item);
-                    player.incScore(TAKE_SCORE);
-                    
-                    System.out.println("\n You have taken the " + item);
-                    System.out.println(player);
-                    System.out.println(currentRoom.getShortDescription());                    
+                }
+                
+                if((wantsWater) && (!currentRoom.hasWater()))
+                {
+                    System.out.println("\n There is now water within reach!");
+                }
+                else if ((wantsWater && 
+                         (!player.isCarrying(ItemTypes.BOTTLE))))
+                {
+                    System.out.println("\n You do not have a bottle!");
+                    System.out.println(" You take a drink!");
+                    player.incEnergy(2);
                 }
                 else
                 {
-                    System.out.println("\n You can't take the " + object);
+                    if(!wantsWater)
+                    {
+                        player.addItem(item);
+                        player.incScore(TAKE_SCORE);
+                        System.out.println("\n You have taken the " + item);
+                    }
+                    else
+                    {
+                        System.out.println("\n You have filled the bottle with water!");
+                    }
+                    
+                    System.out.println(player);
+                    System.out.println(currentRoom.getShortDescription());                    
                 }
+            }
+            else
+            {
+                System.out.println("\n You can't take the " + object);
             }
         }
     }
     
     private void fill(Command command)
     {
-        if(currentRoom.getID() == 0)
+        if(currentRoom.hasWater())
         {
             String object = command.getSecondWord();
             
             if(object.equals(ItemTypes.BOTTLE.toString()))
             {
                 player.addItem(ItemTypes.WATER);
-                player.incEnergy(WATER_ENERGY);
                 player.incScore(TAKE_SCORE);
                 
                 System.out.println(player);

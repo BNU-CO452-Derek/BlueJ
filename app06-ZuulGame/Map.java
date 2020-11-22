@@ -48,6 +48,7 @@ public class Map
         " building. Around you is a forest. A small stream\n" +
         " flows out of the building and down a gully.";
         
+        start.setWater();
         start.setDescription(description);
         start.setItem(ItemTypes.BOTTLE, "\n There is an empty bottle on the ground");
     }
@@ -103,7 +104,8 @@ public class Map
         description += "\n tumbling along a rocky bed.";
         valley.setDescription(description);
         
-        valley.setItem(ItemTypes.APPLES,
+        valley.setWater();
+        valley.setItem(ItemTypes.FOOD,
             "\n There are a couple of apple trees with fruit");
             
         connectRooms(start, "south", valley);
