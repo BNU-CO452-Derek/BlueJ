@@ -14,6 +14,7 @@ public class Map
     private Room valley;
     private Room slit;
     private Room grate;
+    private Room chamber;
     
     private String description;
     
@@ -29,6 +30,7 @@ public class Map
         createValley();
         createSlit();
         createGrate();
+        createChamber();
     }
     
     public Room getStartRoom()
@@ -141,6 +143,19 @@ public class Map
         connectRooms(grate, "north", slit);
     }
     
+    private void createChamber()
+    {
+        chamber = new Room(10, "in a chamber");
+        
+        description.join(
+            "You are in a small chamber beneath a 3x3 steel",
+            "\ngrate to the surface.",
+            "\nA low crawl over cobbles leads inward to the west.");
+        
+        chamber.setDescription(description);
+        connectRooms(slit, "down", chamber);
+    }
+    
     private void connectRooms(Room room, String direction, Room otherRoom)
     {
         room.setExit(direction, otherRoom);
@@ -160,7 +175,11 @@ public class Map
         else if(direction.equals("south"))
         {
             otherRoom.setExit("north", room);
-        }        
+        }
+        else if(direction.equals("down"))
+        {
+            otherRoom.setExit("up", room);
+        }
     }
     
     private Room cloneRoom(int id, Room toClone)
