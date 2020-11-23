@@ -13,10 +13,7 @@
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
  * 
- * 
- * 
- * Modified and extended by Derek Peacock
- * and Nick
+ * Modified and extended by Derek Peacock and Nick
  * October 26th 2020
  * Version 0.1
  */
@@ -33,6 +30,8 @@ public class Game
     private Player player;
     private Map map;
     
+    private boolean grateLocked;
+    
     /**
      * Create the game and initialise its internal map.
      */
@@ -42,6 +41,7 @@ public class Game
         
         map = new Map();
         currentRoom = map.getStartRoom();
+        grateLocked = true;
         
         parser = new Parser();
     }
@@ -126,6 +126,10 @@ public class Game
             case FILL:
                 fill(command);
                 break;
+               
+            case UNLOCK:
+                unlockGrate();
+                break;
                 
             case QUIT:
                 wantToQuit = quit(command);
@@ -175,12 +179,19 @@ public class Game
         }
         else 
         {
-            currentRoom = nextRoom;
-            
-            player.incMoves();
-            
-            System.out.println(player);
-            System.out.println(currentRoom.getShortDescription());
+            if((currentRoom.getID() == 10) && grateLocked)
+            {
+                System.out.println(" The steel grate is locked!");
+            }
+            else
+            {
+                currentRoom = nextRoom;
+                
+                player.incMoves();
+                
+                System.out.println(player);
+                System.out.println(currentRoom.getShortDescription());
+            }
         }
     }
 
@@ -266,6 +277,19 @@ public class Game
         else
         {
             System.out.println(" There is no water here!");
+        }
+    }
+    
+    private void unlockGrate()
+    {
+        if(player.isCarrying(ItemTypes.KEY))
+        {
+            grateLocked = false;
+            System.out.println(" You have unlocked the grate!");
+        }
+        else
+        {
+            System.out.println(" You cannot unlock the grate without keys!");
         }
     }
     
