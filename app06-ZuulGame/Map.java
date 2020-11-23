@@ -128,6 +128,7 @@ public class Map
         description += " \n Downstream the streambed is bare rock";
         
         slit.setDescription(description);
+        slit.setWater();
         connectRooms(slit, "north", valley);
     }
     
@@ -147,13 +148,12 @@ public class Map
     {
         chamber = new Room(10, "in a chamber");
         
-        description.join(
-            "You are in a small chamber beneath a 3x3 steel",
-            "\ngrate to the surface.",
+        description = "You are in a small chamber beneath a 3x3 steel";
+        description.join("\ngrate to the surface.",
             "\nA low crawl over cobbles leads inward to the west.");
         
         chamber.setDescription(description);
-        connectRooms(slit, "down", chamber);
+        connectRooms(grate, "down", chamber);
     }
     
     private void connectRooms(Room room, String direction, Room otherRoom)
