@@ -12,10 +12,20 @@ public class Menu
     public static int getIntChoice(String [] choices)
     {
         int choice = 0;
+        boolean validChoice = false;
         
-        printChoices(choices);
-        choice = reader.getInt("\n    Enter choice number > ");
-        
+        while(!validChoice)
+        {
+            printChoices(choices);
+            choice = reader.getInt("\n    Enter choice number > ");
+            
+            if(choice > 0 && choice <= choices.length)
+                validChoice = true;
+            else
+                System.out.println("\n " + choice + " is not a valid choice!\n");
+                
+        }
+
         return choice;
     }
     
