@@ -15,6 +15,8 @@ public class Map
     private Room slit;
     private Room grate;
     private Room chamber;
+    private Room cobbles;
+    private Room largeChamber;
     
     private String description;
     
@@ -31,6 +33,8 @@ public class Map
         createSlit();
         createGrate();
         createChamber();
+        createCobbles();
+        createLargeChamber();
     }
     
     public Room getStartRoom()
@@ -146,14 +150,37 @@ public class Map
     
     private void createChamber()
     {
-        chamber = new Room(10, "in a chamber");
+        largeChamber = new Room(10, "in a chamber");
         
         description = "You are in a small chamber beneath a 3x3 steel";
         description.join("\ngrate to the surface.",
             "\nA low crawl over cobbles leads inward to the west.");
         
-        chamber.setDescription(description);
+        largeChamber.setDescription(description);
         connectRooms(grate, "down", chamber);
+    }
+    
+    private void createCobbles()
+    {
+        cobbles = new Room(10, "crawling over cobbles");
+        
+        description = "You are crawling over cobbles in a low passage.";
+        description.join("\nThere is a dim light at the east end of the passage.");
+        
+        cobbles.setDescription(description);
+        connectRooms(chamber, "west", cobbles);
+    }
+    
+    private void createLargeChamber()
+    {
+        chamber = new Room(10, "in a large chamber");
+        
+        description = "You are in a splendid chamber thirty feet high.";
+        description.join("\nThe walls are frozen rivers of orange stone. ",
+            "There are exits north, south, east and west.");
+        
+        chamber.setDescription(description);
+        connectRooms(cobbles, "west", largeChamber);
     }
     
     private void connectRooms(Room room, String direction, Room otherRoom)
