@@ -14,9 +14,10 @@ public class Map
     private Room valley;
     private Room slit;
     private Room grate;
-    private Room chamber;
+    private Room smallChamber;
     private Room cobbles;
     private Room largeChamber;
+    private Room kingsHall;
     
     private String description;
     
@@ -32,14 +33,15 @@ public class Map
         createValley();
         createSlit();
         createGrate();
-        createChamber();
+        createSmallChamber();
         createCobbles();
         createLargeChamber();
+        createKingsHall();
     }
     
     public Room getStartRoom()
     {
-        return start;
+        return grate;
     }
     
     /**
@@ -133,6 +135,7 @@ public class Map
         
         slit.setDescription(description);
         slit.setWater();
+        
         connectRooms(slit, "north", valley);
     }
     
@@ -148,16 +151,16 @@ public class Map
         connectRooms(grate, "north", slit);
     }
     
-    private void createChamber()
+    private void createSmallChamber()
     {
-        largeChamber = new Room(10, "in a chamber");
+        smallChamber = new Room(10, "in a chamber");
         
         description = "You are in a small chamber beneath a 3x3 steel";
         description.join("\ngrate to the surface.",
             "\nA low crawl over cobbles leads inward to the west.");
         
-        largeChamber.setDescription(description);
-        connectRooms(grate, "down", chamber);
+        smallChamber.setDescription(description);
+        connectRooms(smallChamber, "up", grate);
     }
     
     private void createCobbles()
@@ -168,19 +171,51 @@ public class Map
         description.join("\nThere is a dim light at the east end of the passage.");
         
         cobbles.setDescription(description);
-        connectRooms(chamber, "west", cobbles);
+        connectRooms(cobbles, "west", smallChamber);
     }
     
     private void createLargeChamber()
     {
-        chamber = new Room(10, "in a large chamber");
+        largeChamber = new Room(10, "in a large chamber");
         
         description = "You are in a splendid chamber thirty feet high.";
         description.join("\nThe walls are frozen rivers of orange stone. ",
-            "There are exits north, south, east and west.");
+            "There are passages off in all directions.");
         
-        chamber.setDescription(description);
-        connectRooms(cobbles, "west", largeChamber);
+        largeChamber.setDescription(description);
+        connectRooms(largeChamber, "east", cobbles);
+        
+        Room pit = new Room(11, "in a small pit");
+        description = "At your feet is a small pit breathing traces of white mist. ";
+        description.join("A east passage ends here except for a small crack leading on");
+        pit.setDescription(description);
+        
+        connectRooms(pit, "east", largeChamber);
+    
+        Room  jumble = new Room(12, "in a jumble of rocks");
+        description = "You are in a jumble of rocks, with cracks everywhere.";
+        jumble.setDescription(description);
+        
+        connectRooms(jumble, "north", largeChamber);
+        
+        // Room  rocks = new Room(13, "in a large room");
+        // description = "You are in a large room full of dusty rocks. ";
+        // description.join("There are cracks everywhere.");
+        // rocks.setDescription(description);
+        
+        // connectRooms(rocks, "south", largeChamber);        
+    }
+    
+    private void createKingsHall()
+    {
+        kingsHall = new Room(14, "in the King's Hall");
+        
+        description = "You are in the Hall of the Mountain King";
+        description.join("\nThe hall is filled with wisps of white mist ",
+        "swaying to and fro as if alive.");
+        
+        cobbles.setDescription(description);
+        connectRooms(kingsHall, "south", largeChamber);        
     }
     
     private void connectRooms(Room room, String direction, Room otherRoom)
@@ -207,6 +242,10 @@ public class Map
         {
             otherRoom.setExit("up", room);
         }
+        else if(direction.equals("up"))
+        {
+            otherRoom.setExit("down", room);
+        }        
     }
     
     private Room cloneRoom(int id, Room toClone)

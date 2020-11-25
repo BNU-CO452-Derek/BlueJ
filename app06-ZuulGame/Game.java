@@ -41,7 +41,7 @@ public class Game
         
         map = new Map();
         currentRoom = map.getStartRoom();
-        grateLocked = true;
+        grateLocked = false;
         
         parser = new Parser();
     }
