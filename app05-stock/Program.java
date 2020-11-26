@@ -1,4 +1,4 @@
-
+import java.io.IOException;
 /**
  * This class creates an instance of the StockApp
  * and then calls on its run method.
@@ -14,9 +14,20 @@ public class Program
      * This class creates and runs an instance of
      * the StockApp class
      */
-    public static void main()
+    public static void main() throws IOException
     {
-        app = new StockApp();
-        app.run();
+        char escCode = 0x1B;
+        int row = 10, col = 20;
+        System.out.print(String.format("%c[%d;%df",escCode,row, col));
+        System.out.println("XXX");
+        
+        // app = new StockApp();
+        // app.run();
+        
+        // InputReader reader = new InputReader();
+        // //char c = reader.getChar();
+        // int letter = System.in.read();
+        // System.out.println("Character = " + letter);
+        
     }
 }

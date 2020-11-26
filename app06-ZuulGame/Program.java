@@ -18,5 +18,7 @@ public class Program
     {
         game = new Game("Derek");
         game.play();
+        //char c = (char)System.in.read();
+        //System.out.println("Character entered = " + c);
     }
 }

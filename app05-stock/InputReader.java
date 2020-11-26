@@ -32,7 +32,7 @@ public class InputReader
     {
         System.out.println(prompt);   
         String inputLine = reader.nextLine();
-
+        
         return inputLine;
     }
     
@@ -52,5 +52,10 @@ public class InputReader
         number = reader.nextInt();
 
         return number;
-    }    
+    }
+    
+    public char getChar()
+    {
+        return reader.next().charAt(0);
+    }
 }
