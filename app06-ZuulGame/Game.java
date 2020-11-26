@@ -66,8 +66,17 @@ public class Game
             
             if(!player.isAlive())
             {
-                System.out.println(" \nYou have died of lack of water or food!\n");
+                System.out.println(" \n You have died of lack of water or food!\n");
                 finished = true;
+            }
+            else if(player.isCarrying(ItemTypes.TREASURE))
+            {
+                System.out.println(" \n You have found fabulous treasure!");
+                System.out.println(" and are setup for life!\n");
+                System.out.println(" I just hope you can find your way out " + 
+                                   "of this cave system\n");
+                
+                finished = true;               
             }
         }
         
@@ -302,7 +311,7 @@ public class Game
     {
         if(command.hasSecondWord()) 
         {
-            System.out.println("Quit what?");
+            System.out.println(" Quit what?");
             return false;
         }
         else 

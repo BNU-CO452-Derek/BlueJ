@@ -41,7 +41,7 @@ public class Map
     
     public Room getStartRoom()
     {
-        return grate;
+        return largeChamber;
     }
     
     /**
@@ -167,7 +167,7 @@ public class Map
     {
         cobbles = new Room(10, "crawling over cobbles");
         
-        description = "You are crawling over cobbles in a low passage.";
+        description = "crawling over cobbles in a low passage.";
         description.join("\nThere is a dim light at the east end of the passage.");
         
         cobbles.setDescription(description);
@@ -178,22 +178,22 @@ public class Map
     {
         largeChamber = new Room(10, "in a large chamber");
         
-        description = "You are in a splendid chamber thirty feet high.";
+        description = "in a splendid chamber thirty feet high.";
         description.join("\nThe walls are frozen rivers of orange stone. ",
             "There are passages off in all directions.");
         
         largeChamber.setDescription(description);
-        connectRooms(largeChamber, "east", cobbles);
+        connectRooms(largeChamber, "west", cobbles);
         
         Room pit = new Room(11, "in a small pit");
-        description = "At your feet is a small pit breathing traces of white mist. ";
+        description = "in a small pit breathing traces of white mist. ";
         description.join("A east passage ends here except for a small crack leading on");
         pit.setDescription(description);
         
-        connectRooms(pit, "east", largeChamber);
+        connectRooms(pit, "west", largeChamber);
     
         Room  jumble = new Room(12, "in a jumble of rocks");
-        description = "You are in a jumble of rocks, with cracks everywhere.";
+        description = "in a jumble of rocks, with cracks everywhere.";
         jumble.setDescription(description);
         
         connectRooms(jumble, "north", largeChamber);
@@ -214,7 +214,10 @@ public class Map
         description.join("\nThe hall is filled with wisps of white mist ",
         "swaying to and fro as if alive.");
         
-        cobbles.setDescription(description);
+        kingsHall.setItem(ItemTypes.TREASURE, 
+            "\n There is an old chest filled with treasure");
+        
+        kingsHall.setDescription(description);
         connectRooms(kingsHall, "south", largeChamber);        
     }
     
