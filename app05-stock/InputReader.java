@@ -1,4 +1,3 @@
-import java.util.HashSet;
 import java.util.Scanner;
 
 /**
@@ -7,6 +6,9 @@ import java.util.Scanner;
  * 
  * @author     Michael Kölling and David J. Barnes
  * @version    0.1 (2016.02.29)
+ *
+ * Modified and extended by Dr Derek Peacock
+ * December 1st 2020
  */
 public class InputReader
 {
@@ -21,19 +23,29 @@ public class InputReader
     }
 
     /**
-     * Prompt the user to enter a string
-     * Read a line of text from standard input 
-     * (the text terminal),
-     * and return a String.
+     * Prompt the user to enter a string and Read a line of text
+     * from standard input (the text terminal), and return a String.
      *
      * @return  A String typed by the user.
      */
     public String getString(String prompt)
     {
-        System.out.println(prompt);   
-        String inputLine = reader.nextLine();
-        
-        return inputLine;
+        String value = null;
+        boolean isValid = false;
+
+        while(isValid == false)
+        {
+            System.out.println(prompt);
+            value = reader.nextLine();
+
+            if(value.isBlank() || value.isEmpty())
+            {
+                System.out.println("Your input is blank");
+            }
+            else isValid = true;
+        }
+
+        return value;
     }
     
     /**
@@ -46,16 +58,49 @@ public class InputReader
      */
     public int getInt(String prompt)
     {
+        boolean isValid = false;
         int number = 0;
-        
-        System.out.println(prompt);   
-        number = reader.nextInt();
 
+        while(isValid == false)
+        {
+            System.out.println(prompt);
+
+            try
+            {
+                number = reader.nextInt();
+                isValid = true;
+            }
+            catch(Exception e)
+            {
+                System.out.println("\nInvalid integer!\n");
+            }
+
+        }
         return number;
     }
-    
-    public char getChar()
+
+    /**
+     * Display a prompt and Get an integer value between min and max
+     * @param prompt the message to the user to enter an int
+     * @param min the minimum allowed value
+     * @param max the maximum allowed value
+     * @return the integer number
+     */
+    public int getInt(String prompt, int min, int max)
     {
-        return reader.next().charAt(0);
+        boolean isValid = false;
+        int number = 0;
+
+        while(isValid == false)
+        {
+            number = getInt(prompt);
+            if(number < min || number > max)
+            {
+                System.out.println("Number must be between " + min + " and " + max);
+            }
+            else
+                isValid = true;
+        }
+        return number;
     }
 }

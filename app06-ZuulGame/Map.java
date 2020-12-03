@@ -41,7 +41,7 @@ public class Map
     
     public Room getStartRoom()
     {
-        return largeChamber;
+        return start;
     }
     
     /**
